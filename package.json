@@ -108,7 +108,7 @@
     "@nrwl/workspace": "12.10.1",
     "@nx-plus/vue": "12.2.0",
     "@nxext/svelte": "11.3.2",
-    "@pmmmwh/react-refresh-webpack-plugin": "0.5.0-rc.2",
+    "@pmmmwh/react-refresh-webpack-plugin": "0.5.11",
     "@tailwindcss/typography": "0.4.1",
     "@testing-library/react": "11.2.7",
     "@testing-library/react-hooks": "7.0.2",
