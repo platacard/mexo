@@ -7,93 +7,40 @@ env:
 
 on:
   pull_request:
-    branches:
-      - main
-      - beta
-      - alpha
+  push:
+    branches: [main, alpha]
 
 jobs:
-  install:
-    name: Install
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2.3.4
-        with:
-          fetch-depth: 0
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v2.1.5
-        with:
-          node-version: 12.x
-      - uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - run: npm ci --cache ~/.npm --prefer-offline
   build:
-    needs:
-      - install
-    name: Building
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v4.1.0
         with:
           fetch-depth: 0
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v2.1.5
-        with:
-          node-version: 12.x
-      - uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: Building
-        run: npm run build -- --base=remotes/origin/${{github.event.pull_request.base.ref}}
+      - uses: taiga-family/ci/actions/setup/node@1.20.0
+      - run: npm run build
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
+
   lint:
-    needs:
-      - install
-    name: Linting
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v4.1.0
         with:
           fetch-depth: 0
-      - run: git fetch origin ${{github.event.pull_request.base.ref}}
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v2.1.5
-        with:
-          node-version: 12.x
-      - uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - run: npm run lint -- --base=remotes/origin/${{github.event.pull_request.base.ref}}
+      - uses: taiga-family/ci/actions/setup/node@1.20.0
+      - run: npm run lint
+      - run: npm run prettier -- --check
+
   test:
-    needs:
-      - install
-    name: Testing
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v4.1.0
         with:
           fetch-depth: 0
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v2.1.5
-        with:
-          node-version: 12.x
-      - uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - run: npm run test -- --base=remotes/origin/${{github.event.pull_request.base.ref}} --coverage --coverageReporters lcov
-      - run: echo "::set-output name=projectMatrix::$(npx nx print-affected --target test --select tasks.target.project --base=remotes/origin/${{github.event.pull_request.base.ref}})"
+      - uses: taiga-family/ci/actions/setup/node@1.20.0
+      - run: npm run test --coverage --coverageReporters lcov
+      - run: echo "::set-output name=projectMatrix::$(npx nx print-affected --target test --select tasks.target.project)"
         id: set-project-matrix
       - uses: actions/github-script@v5
         id: parsed-project-matrix
@@ -105,4 +52,3 @@ jobs:
       - uses: codecov/codecov-action@v2
         with:
           files: ${{ steps.parsed-project-matrix.outputs.result }}
-          token: ${{ secrets.CODECOV_TOKEN }}
