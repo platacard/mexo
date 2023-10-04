@@ -67,7 +67,7 @@
     "@taiga-ui/icons": "2.10.1",
     "@taiga-ui/kit": "2.10.1",
     "core-js": "3.33.0",
-    "document-register-element": "1.13.1",
+    "document-register-element": "1.14.10",
     "ng-animate": "1.0.0",
     "ngx-highlightjs": "4.1.3",
     "react": "17.0.2",
