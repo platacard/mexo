@@ -109,7 +109,7 @@
     "@nx-plus/vue": "12.2.0",
     "@nxext/svelte": "11.3.2",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.11",
-    "@tailwindcss/typography": "0.4.1",
+    "@tailwindcss/typography": "0.5.10",
     "@testing-library/react": "11.2.7",
     "@testing-library/react-hooks": "7.0.2",
     "@testing-library/svelte": "3.2.2",
