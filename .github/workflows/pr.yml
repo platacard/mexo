@@ -12,6 +12,7 @@ on:
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
@@ -23,6 +24,7 @@ jobs:
           NODE_OPTIONS: --openssl-legacy-provider
 
   lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
@@ -33,6 +35,7 @@ jobs:
       - run: npm run prettier -- --check
 
   test:
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
