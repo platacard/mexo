@@ -1,4 +1,4 @@
-name: Pull Request Workflow
+name: CI
 
 env:
   NX_BRANCH: ${{ github.event.number }}
@@ -55,3 +55,8 @@ jobs:
       - uses: codecov/codecov-action@v3
         with:
           files: ${{ steps.parsed-project-matrix.outputs.result }}
+
+concurrency:
+  group: ci-${{ github.head_ref }}
+  cancel-in-progress: true
+
