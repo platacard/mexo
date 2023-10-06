@@ -1,0 +1,31 @@
+{
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/vue/**/*.{ts,tsx,vue}"]
+      }
+    },
+    "xbuild": {
+      "executor": "@nx-plus/vue:library",
+      "options": {
+        "dest": "dist/libs/vue",
+        "entry": "libs/vue/src/index.ts",
+        "tsConfig": "libs/vue/tsconfig.lib.json"
+      }
+    },
+    "xtest": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/vue"],
+      "options": {
+        "jestConfig": "libs/vue/jest.config.js",
+        "passWithNoTests": true,
+        "coverageDirectory": "coverage/vue"
+      }
+    }
+  },
+  "root": "libs/vue",
+  "sourceRoot": "libs/vue/src",
+  "tags": []
+}

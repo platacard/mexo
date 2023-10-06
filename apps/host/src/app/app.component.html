@@ -1,7 +1,17 @@
 <h1>Host App</h1>
 
-<button (click)="click()">click</button>
+<div class="embed-container">
+  <h2>Modules (microzordNgModule)</h2>
+  <ng-container [microzordNgModule]="moduleName$$ | async"></ng-container>
+</div>
 
-<ng-container [microzordNgModule]="moduleName$$ | async"></ng-container>
-<div #container></div>
-<router-outlet></router-outlet>
+<div class="embed-container">
+  <h2>Apps (microzordApp)</h2>
+  <div
+    *ngFor="let app of apps$ | async"
+    class="embedded"
+    [microzordApp]="app"
+    (application)="appLoaded($event)"
+    (hook)="appHook($event)"
+  ></div>
+</div>

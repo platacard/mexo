@@ -1,20 +1,12 @@
-import {NgModule, Type} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
 import {AppComponent} from './app.component';
-import {MicrozordNgModule} from '@microzord/angular';
+import {RemoteModule} from './remote-module/remote-module.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    // RouterModule.forRoot([], {initialNavigation: 'enabledBlocking'}),
-  ],
+  imports: [BrowserModule, RemoteModule],
   providers: [],
-  bootstrap: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule implements MicrozordNgModule<AppComponent> {
-  getEntryPoint(): Type<AppComponent> {
-    return AppComponent;
-  }
-}
+export class AppModule {}

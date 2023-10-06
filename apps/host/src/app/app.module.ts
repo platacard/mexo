@@ -15,12 +15,20 @@ import {HttpClientModule} from '@angular/common/http';
     MicrozordHostModule.register({
       modules: [
         {
-          name: 'remote',
-          load: () => import('remote/App').then(m => m.App),
+          name: 'remote-module',
+          load: () => import('remote/remote-module').then(m => m.RemoteModule),
+        },
+      ],
+      apps: [
+        {
+          name: 'remote-app',
+          props: {foo: 'bar'},
+          load: () =>
+            import('remote/remote-app-bootstrap').then(m => m.remoteAppBootstrap),
         },
         {
-          name: 'demo',
-          load: () => import('demo/App').then(m => m.App),
+          name: 'remote-react',
+          load: () => import('remoteReact/remote-react-app').then(x => x.default),
         },
       ],
     }),

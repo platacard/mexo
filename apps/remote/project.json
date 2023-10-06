@@ -1,0 +1,98 @@
+{
+  "projectType": "application",
+  "root": "apps/remote",
+  "sourceRoot": "apps/remote/src",
+  "prefix": "microzord",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/remote",
+        "index": "apps/remote/src/index.html",
+        "main": "apps/remote/src/main.ts",
+        "polyfills": "apps/remote/src/polyfills.ts",
+        "tsConfig": "apps/remote/tsconfig.app.json",
+        "inlineStyleLanguage": "less",
+        "assets": ["apps/remote/src/favicon.ico", "apps/remote/src/assets"],
+        "styles": ["apps/remote/src/styles.less"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/remote/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/remote/src/environments/environment.ts",
+              "with": "apps/remote/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/remote/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "remote:build:production"
+        },
+        "development": {
+          "browserTarget": "remote:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4201
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "remote:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/remote/src/**/*.ts", "apps/remote/src/**/*.html"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/remote"],
+      "options": {
+        "jestConfig": "apps/remote/jest.config.js",
+        "passWithNoTests": true,
+        "coverageDirectory": "coverage/remote"
+      }
+    }
+  },
+  "tags": []
+}

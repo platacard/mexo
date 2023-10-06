@@ -25,32 +25,7 @@
       }
     }
   },
-  "projects": {
-    "angular": {
-      "tags": []
-    },
-    "core": {
-      "tags": []
-    },
-    "demo": {
-      "tags": []
-    },
-    "host": {
-      "tags": []
-    },
-    "react": {
-      "tags": []
-    },
-    "remote": {
-      "tags": []
-    },
-    "svelte": {
-      "tags": []
-    },
-    "vue": {
-      "tags": []
-    }
-  },
+  "projects": {},
   "targetDependencies": {
     "build": [
       {

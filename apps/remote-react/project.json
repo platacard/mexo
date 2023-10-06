@@ -1,0 +1,76 @@
+{
+  "root": "apps/remote-react",
+  "sourceRoot": "apps/remote-react/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/remote-react",
+        "index": "apps/remote-react/src/index.html",
+        "main": "apps/remote-react/src/main.tsx",
+        "polyfills": "apps/remote-react/src/polyfills.ts",
+        "tsConfig": "apps/remote-react/tsconfig.app.json",
+        "assets": ["apps/remote-react/src/favicon.ico", "apps/remote-react/src/assets"],
+        "styles": ["apps/remote-react/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "apps/remote-react/webpack.config.js"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/remote-react/src/environments/environment.ts",
+              "with": "apps/remote-react/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "extractCss": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "remote-react:build",
+        "port": 4203,
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "remote-react:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/remote-react/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/remote-react"],
+      "options": {
+        "jestConfig": "apps/remote-react/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'microzord-root',
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'remote-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less'],
 })
-export class AppComponent {
-  title = 'remote';
-}
+export class AppComponent {}

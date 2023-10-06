@@ -1,0 +1,66 @@
+{
+  "projectType": "library",
+  "root": "libs/angular",
+  "sourceRoot": "libs/angular/src",
+  "prefix": "",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "options": {
+        "tsConfig": "libs/angular/tsconfig.lib.json",
+        "project": "libs/angular/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/angular/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/angular/src/**/*.ts", "libs/angular/src/**/*.html"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/angular"],
+      "options": {
+        "jestConfig": "libs/angular/jest.config.js",
+        "passWithNoTests": true,
+        "coverageDirectory": "coverage/angular"
+      }
+    },
+    "semrel": {
+      "executor": "@ng-builders/semrel:release",
+      "options": {
+        "npm": {
+          "pkgRoot": "dist/libs/angular"
+        },
+        "branches": [
+          "+([0-9])?(.{+([0-9]),x}).x",
+          "main",
+          "next",
+          "next-major",
+          {
+            "name": "beta",
+            "prerelease": true
+          },
+          {
+            "name": "alpha",
+            "prerelease": true
+          }
+        ]
+      }
+    },
+    "release": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["npm run release:package --package=angular"],
+        "parallel": false
+      }
+    }
+  },
+  "tags": []
+}

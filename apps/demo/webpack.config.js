@@ -25,16 +25,26 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'demo',
       filename: 'remoteEntry.js',
-      exposes: {
-        './App': 'apps/demo/src/app/application.ts',
-      },
-      shared: {
-        '@angular/core': {singleton: true, strictVersion: false},
-        '@angular/common': {singleton: true, strictVersion: true},
-        '@angular/common/http': {singleton: true, strictVersion: true},
-        '@angular/router': {singleton: true, strictVersion: true},
+      exposes: {},
+      shared: mf.share({
+        '@angular/core': {singleton: true, strictVersion: true, requiredVersion: 'auto'},
+        '@angular/common': {
+          singleton: true,
+          strictVersion: true,
+          requiredVersion: 'auto',
+        },
+        '@angular/common/http': {
+          singleton: true,
+          strictVersion: true,
+          requiredVersion: 'auto',
+        },
+        '@angular/router': {
+          singleton: true,
+          strictVersion: true,
+          requiredVersion: 'auto',
+        },
         ...sharedMappings.getDescriptors(),
-      },
+      }),
     }),
     sharedMappings.getPlugin(),
   ],

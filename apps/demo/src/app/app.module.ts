@@ -30,7 +30,7 @@ export const HIGHLIGHT_OPTIONS_VALUE = {
     TuiDocMainModule,
     TuiLinkModule,
     GettingStartedModule,
-    // RouterModule.forRoot(ROUTES, {initialNavigation: 'enabled'}),
+    RouterModule.forRoot(ROUTES, {initialNavigation: 'enabled'}),
   ],
   providers: [
     {

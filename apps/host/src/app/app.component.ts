@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Application, MicrozordLifecycleEvent} from '@microzord/core';
 import {BehaviorSubject} from 'rxjs';
 
 @Component({
@@ -7,13 +8,14 @@ import {BehaviorSubject} from 'rxjs';
   styleUrls: ['./app.component.less'],
 })
 export class AppComponent {
-  moduleName$$ = new BehaviorSubject<string | null>('remote');
+  moduleName$$ = new BehaviorSubject<string | null>('remote-module');
+  apps$ = new BehaviorSubject<string[]>(['remote-app', 'remote-react']);
 
-  click() {
-    if (this.moduleName$$.getValue() === 'remote') {
-      this.moduleName$$.next('demo');
-    } else {
-      this.moduleName$$.next('remote');
-    }
+  appLoaded(event: Application<Record<string, unknown>> | null): void {
+    console.log(event);
+  }
+
+  appHook(event: MicrozordLifecycleEvent) {
+    console.log(event);
   }
 }
