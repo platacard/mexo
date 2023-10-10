@@ -10,7 +10,7 @@ jobs:
       - uses: taiga-family/ci/actions/setup/checkout@v1.31.2
       - uses: taiga-family/ci/actions/setup/variables@v1.31.2
       - uses: taiga-family/ci/actions/setup/node@v1.31.2
-      - run: nx run demo:build-gh-pages
+      - run: npx nx run demo:build-gh-pages
       - uses: taiga-family/ci/actions/deploy/github-pages@v1.31.2
         with:
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
