@@ -1,17 +1,21 @@
+import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
-import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
 import {MicrozordHostModule} from '@microzord/angular';
-import {HttpClientModule} from '@angular/common/http';
+import {TuiAlertModule, TuiRootModule} from '@taiga-ui/core';
+import {AppComponent} from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot([], {initialNavigation: 'enabledBlocking'}),
     HttpClientModule,
+    TuiRootModule,
+    TuiAlertModule,
     MicrozordHostModule.register({
       modules: [
         {

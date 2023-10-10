@@ -1,5 +1,4 @@
 import {
-  ComponentFactoryResolver,
   ComponentRef,
   Directive,
   ErrorHandler,
@@ -9,7 +8,7 @@ import {
   OnDestroy,
   Output,
 } from '@angular/core';
-import {Observable, of, Subject, throwError} from 'rxjs';
+import {Observable, of, Subject} from 'rxjs';
 import {catchError, map, shareReplay, switchMap, takeUntil, tap} from 'rxjs/operators';
 import {loadEntity} from '@microzord/core';
 import {EntryPoint, MicrozordNgModule} from '../types/ng-module';
@@ -23,12 +22,17 @@ import {MicrozordNgCompilerService} from './microzord-ng-compiler.service';
 export class MicrozordNgModuleDirective implements OnDestroy {
   private name$ = new Subject<string | null>();
   private destroy$ = new Subject<void>();
+
   @Output()
   module: Observable<NgModuleRef<any> | null>;
 
+  @Input('microzordNgModule')
+  set name(moduleName: string | null) {
+    this.ngZone.runOutsideAngular(() => this.name$.next(moduleName));
+  }
+
   constructor(
     private ngZone: NgZone,
-    private componentFactoryResolver: ComponentFactoryResolver,
     private mzNgCompiler: MicrozordNgCompilerService,
     private errorHandler: ErrorHandler,
   ) {
@@ -50,11 +54,6 @@ export class MicrozordNgModuleDirective implements OnDestroy {
     );
 
     this.module.subscribe();
-  }
-
-  @Input('microzordNgModule')
-  set name(moduleName: string | null) {
-    this.ngZone.runOutsideAngular(() => this.name$.next(moduleName));
   }
 
   private loadModuleAndBootstrap(name: string): Observable<ComponentRef<EntryPoint>> {

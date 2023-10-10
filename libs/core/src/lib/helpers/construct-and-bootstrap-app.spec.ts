@@ -2,7 +2,7 @@ import {registerApp} from './register-app';
 import {Application} from '../models/application';
 import {AppRegistrationOptions} from '../models/registration-options';
 import {loadApp} from './load-app';
-import {bootstrapApp} from './bootstrap-app';
+import {constructAndBootstrapApp} from './construct-and-bootstrap-app';
 import {entityOptionsRegistry, loadedEntityRegistry} from '../registry';
 import {ApplicationMock} from '@microzord/core/testing';
 
@@ -11,7 +11,7 @@ function clearRegistry() {
   entityOptionsRegistry.clear();
 }
 
-describe('bootstrapApp', () => {
+describe('constructAndBootstrapApp', () => {
   let options: AppRegistrationOptions;
   let loadFn: jest.SpiedFunction<AppRegistrationOptions['load']>;
 
@@ -36,7 +36,7 @@ describe('bootstrapApp', () => {
     it("shouldn't load an app again", async () => {
       expect.assertions(1);
 
-      await bootstrapApp('appMock', '#container').toPromise();
+      await constructAndBootstrapApp('appMock', '#container').toPromise();
 
       expect(loadFn).toHaveBeenCalledTimes(1);
     });
@@ -44,7 +44,7 @@ describe('bootstrapApp', () => {
     it('should bootstrap an app', async () => {
       expect.assertions(1);
 
-      const app = await bootstrapApp('appMock', '#container').toPromise();
+      const app = await constructAndBootstrapApp('appMock', '#container').toPromise();
 
       expect(app).toBeInstanceOf(ApplicationMock);
     });
@@ -54,7 +54,7 @@ describe('bootstrapApp', () => {
     it('should load an app', async () => {
       expect.assertions(1);
 
-      await bootstrapApp('appMock', '#container').toPromise();
+      await constructAndBootstrapApp('appMock', '#container').toPromise();
 
       expect(loadFn).toHaveBeenCalledTimes(1);
     });
@@ -62,7 +62,7 @@ describe('bootstrapApp', () => {
     it('should bootstrap an app', async () => {
       expect.assertions(1);
 
-      const app = await bootstrapApp('appMock', '#container').toPromise();
+      const app = await constructAndBootstrapApp('appMock', '#container').toPromise();
 
       expect(app).toBeInstanceOf(Application);
     });

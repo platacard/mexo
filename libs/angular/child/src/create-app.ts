@@ -1,4 +1,4 @@
-import {InjectFlags, InjectionToken, NgModuleRef} from '@angular/core';
+import {CompilerOptions, InjectFlags, InjectionToken, NgModuleRef} from '@angular/core';
 import {Application, ApplicationConstructor} from '@microzord/core';
 import {Router} from '@angular/router';
 import {MicrozordLifecycleEvent, MicrozordMessageEvent} from '@microzord/core';
@@ -7,14 +7,17 @@ export const APP_NAME = new InjectionToken<string>('App name');
 export const ROOT_SELECTOR = new InjectionToken<string>('Root selector');
 
 // todo: очень грубая имплементация
-export function createApp<M, Props extends Record<string, any> = Record<string, any>>(
-  bootstrapFn: (props?: any) => Promise<NgModuleRef<M>>,
+export function createApp<
+  TModule,
+  Props extends Record<string, unknown> = Record<string, unknown>,
+>(
+  bootstrapFn: (props?: CompilerOptions) => Promise<NgModuleRef<TModule>>,
   rootSelector: string,
 ): ApplicationConstructor {
   // todo: не хватает имплементации хуков, сообщений и навигации
-  class AngularApp<T = Props> extends Application<T> {
+  class AngularApp<T extends Record<string, unknown> = Props> extends Application<T> {
     private router: Router | null = null;
-    private ngModule: NgModuleRef<M> | null = null;
+    private ngModule: NgModuleRef<TModule> | null = null;
 
     destroy() {
       super.destroy();

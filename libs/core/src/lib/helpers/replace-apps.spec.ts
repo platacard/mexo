@@ -1,6 +1,6 @@
 import {ApplicationMock} from '@microzord/core/testing';
 import {registerApp} from './register-app';
-import {bootstrapApp} from './bootstrap-app';
+import {constructAndBootstrapApp} from './construct-and-bootstrap-app';
 import {replaceApps} from './replace-apps';
 
 describe('replaceApps', () => {
@@ -23,7 +23,7 @@ describe('replaceApps', () => {
   it('should destroy the appMock1 app', async () => {
     expect.assertions(1);
 
-    const app1 = await bootstrapApp('appMock1', '#').toPromise();
+    const app1 = await constructAndBootstrapApp('appMock1', '#').toPromise();
 
     await replaceApps(app1, 'appMock2').toPromise();
 
@@ -33,7 +33,7 @@ describe('replaceApps', () => {
   it('should bootstrap the appMock2 app', async () => {
     expect.assertions(1);
 
-    const app1 = await bootstrapApp('appMock1', '#').toPromise();
+    const app1 = await constructAndBootstrapApp('appMock1', '#').toPromise();
     const app2 = await replaceApps(app1, 'appMock2').toPromise();
 
     expect(app2.isBootstrapped).toStrictEqual(true);

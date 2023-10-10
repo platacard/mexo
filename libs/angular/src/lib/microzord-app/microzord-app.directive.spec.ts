@@ -1,9 +1,10 @@
-import {MicrozordAppDirective} from './microzord-app.directive';
-import {createDirectiveFactory, SpectatorDirective} from '@ngneat/spectator';
-import {first} from 'rxjs/operators';
 import {Application, MicrozordLifecycleEvent} from '@microzord/core';
-import {MicrozordHostModule} from '../microzord-host.module';
 import {ApplicationMock} from '@microzord/core/testing';
+import {createDirectiveFactory, SpectatorDirective} from '@ngneat/spectator';
+import {asapScheduler} from 'rxjs';
+import {first} from 'rxjs/operators';
+import {MicrozordHostModule} from '../microzord-host.module';
+import {MicrozordAppDirective} from './microzord-app.directive';
 
 describe('MicrozordAppDirective', () => {
   let spectator: SpectatorDirective<MicrozordAppDirective, {name: string}>;
@@ -41,16 +42,18 @@ describe('MicrozordAppDirective', () => {
     ).toBeInstanceOf(Application);
   });
 
-  it('should emit an event', async () => {
+  it('should emit an destroy event on app name change', async () => {
     expect.assertions(1);
 
     const event$ = spectator.directive.hook.pipe(first()).toPromise();
-    spectator.setHostInput('name', 'sss');
+    spectator.setHostInput('name', '');
 
     const event = MicrozordLifecycleEvent.destroyed();
     event.target = expect.any(Application);
 
-    expect(await event$).toEqual(event);
+    const result = await event$;
+
+    expect(result).toEqual(event);
   });
 
   it('should complete the subject when the directive is destroyed', async () => {
@@ -58,7 +61,9 @@ describe('MicrozordAppDirective', () => {
 
     const app$ = spectator.directive.application.toPromise();
 
-    spectator.directive.ngOnDestroy();
+    asapScheduler.schedule(() => {
+      spectator.directive.ngOnDestroy();
+    });
 
     expect(await app$).toEqual(expect.any(Application));
   });

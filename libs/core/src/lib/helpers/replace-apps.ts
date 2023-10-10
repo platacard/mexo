@@ -1,6 +1,6 @@
 import {defer, Observable} from 'rxjs';
 import {Application} from '../models/application';
-import {bootstrapApp} from './bootstrap-app';
+import {constructAndBootstrapApp} from './construct-and-bootstrap-app';
 
 export function replaceApps<T extends Record<string, any> = Record<string, any>>(
   from: Application,
@@ -10,6 +10,6 @@ export function replaceApps<T extends Record<string, any> = Record<string, any>>
   return defer(() => {
     from.destroy();
 
-    return bootstrapApp(to, from.container, props);
+    return constructAndBootstrapApp(to, from.container, props);
   });
 }

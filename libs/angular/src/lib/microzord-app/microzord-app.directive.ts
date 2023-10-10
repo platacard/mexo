@@ -7,9 +7,14 @@ import {
   OnDestroy,
   Output,
 } from '@angular/core';
-import {Application, bootstrapApp, MicrozordLifecycleEvent} from '@microzord/core';
-import {NEVER, Observable, of, Subject} from 'rxjs';
-import {catchError, filter, shareReplay, switchMap, takeUntil, tap} from 'rxjs/operators';
+import {
+  Application,
+  MicrozordLifecycleEvent,
+  bootstrapApp,
+  constructApp,
+} from '@microzord/core';
+import {NEVER, Observable, Subject, of} from 'rxjs';
+import {catchError, shareReplay, switchMap, takeUntil, tap} from 'rxjs/operators';
 import {complete} from '../operators/complete';
 
 @Directive({
@@ -22,6 +27,11 @@ export class MicrozordAppDirective implements OnDestroy {
   @Output()
   application: Observable<Application | null>;
 
+  @Input('microzordApp')
+  set name(appName: string) {
+    this.ngZone.runOutsideAngular(() => this.name$.next(appName));
+  }
+
   private destroy$ = new Subject<void>();
   private name$ = new Subject<string>();
 
@@ -30,24 +40,30 @@ export class MicrozordAppDirective implements OnDestroy {
     private ngZone: NgZone,
     private errorHandler: ErrorHandler,
   ) {
-    this.application = this.name$.pipe(
+    const app$ = this.name$.pipe(
       tap(() => NgZone.assertNotInAngularZone()),
+      switchMap(name => (name ? constructApp(name) : of(null))),
+      catchError(error => this.handleError(error)),
+      takeUntil(this.destroy$),
+      shareReplay(1),
+    );
+
+    this.application = app$.pipe(
+      complete(app => {
+        app?.destroy();
+      }),
       switchMap(name =>
         name
           ? bootstrapApp(name, this.elementRef.nativeElement).pipe(
-              complete(app => app.destroy()),
-              catchError(error => {
-                this.errorHandler.handleError(error);
-                return of(null);
-              }),
+              catchError(error => this.handleError(error)),
             )
           : of(null),
       ),
-      shareReplay(1),
       takeUntil(this.destroy$),
+      shareReplay(1),
     );
 
-    this.hook = this.application.pipe(
+    this.hook = app$.pipe(
       switchMap(app =>
         app
           ? new Observable<MicrozordLifecycleEvent>(subscriber =>
@@ -60,13 +76,13 @@ export class MicrozordAppDirective implements OnDestroy {
     this.application.subscribe();
   }
 
-  @Input('microzordApp')
-  set name(appName: string) {
-    this.ngZone.runOutsideAngular(() => this.name$.next(appName));
-  }
-
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  private handleError(error: unknown): Observable<null> {
+    this.errorHandler.handleError(error);
+    return of(null);
   }
 }

@@ -1,17 +1,20 @@
-<h1>Host App</h1>
+<tui-root>
+  <h1>Host App</h1>
 
-<div class="embed-container">
-  <h2>Modules (microzordNgModule)</h2>
-  <ng-container [microzordNgModule]="moduleName$$ | async"></ng-container>
-</div>
+  <div class="embed-container">
+    <h2>Modules (microzordNgModule)</h2>
+    <ng-container [microzordNgModule]="moduleName$$ | async"></ng-container>
+  </div>
 
-<div class="embed-container">
-  <h2>Apps (microzordApp)</h2>
-  <div
-    *ngFor="let app of apps$ | async"
-    class="embedded"
-    [microzordApp]="app"
-    (application)="appLoaded($event)"
-    (hook)="appHook($event)"
-  ></div>
-</div>
+  <div class="embed-container">
+    <h2>Apps (microzordApp) <button (click)="toggleApps()">toggle apps</button></h2>
+
+    <div
+      *ngFor="let app of apps$ | async"
+      class="embedded"
+      [microzordApp]="app"
+      (application)="appLoaded($event)"
+      (hook)="appHook($event)"
+    ></div>
+  </div>
+</tui-root>

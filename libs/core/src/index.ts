@@ -1,4 +1,6 @@
+export * from './lib/helpers/construct-and-bootstrap-app';
 export * from './lib/helpers/bootstrap-app';
+export * from './lib/helpers/construct-app';
 export * from './lib/helpers/get-app';
 export * from './lib/helpers/get-entity';
 export * from './lib/helpers/load-app';

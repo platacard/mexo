@@ -14,7 +14,15 @@
         "polyfills": "apps/host/src/polyfills.ts",
         "tsConfig": "apps/host/tsconfig.app.json",
         "inlineStyleLanguage": "less",
-        "assets": ["apps/host/src/favicon.ico", "apps/host/src/assets"],
+        "assets": [
+          "apps/host/src/favicon.ico",
+          "apps/host/src/assets",
+          {
+            "glob": "**/*",
+            "input": "node_modules/@taiga-ui/icons/src",
+            "output": "assets/taiga-ui/icons"
+          }
+        ],
         "styles": [
           "node_modules/@taiga-ui/core/styles/taiga-ui-global.less",
           "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
