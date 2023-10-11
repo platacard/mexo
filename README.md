@@ -6,7 +6,7 @@ It is a pre-alpha version of the library. Please, do not use it until official r
 
 [![npm version](https://img.shields.io/npm/v/@microzord/core.svg)](https://npmjs.com/package/@microzord/core)
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/@microzord/core)](https://bundlephobia.com/result?p=@microzord/core)
-[![codecov](https://codecov.io/gh/Tinkoff/microzord/branch/alpha/graph/badge.svg?token=MPSKF8YX7H)](https://codecov.io/gh/Tinkoff/microzord)
+[![codecov](https://codecov.io/gh/taiga-family/microzord/branch/alpha/graph/badge.svg?token=MPSKF8YX7H)](https://codecov.io/gh/taiga-family/microzord)
 
 ## What is it?
 
@@ -33,11 +33,9 @@ app.module.ts
       apps: [
         {
           name: 'react-menu',
-          assetMap: '/react-menu/microzord.json',
         },
         {
           name: 'vue-footer-app',
-          assetMap: '/vue-footer-app/microzord.json',
         },
       ],
     }),
@@ -49,11 +47,11 @@ export class AppModule {}
 Usage in application:
 
 ```html
-<header microzord="react-menu"></header>
+<header microzordApp="react-menu"></header>
 
 <div>Any content</div>
 
-<footer microzord="vue-footer-app" (hook)="onFooterLifecycleEvent($event)"></footer>
+<footer microzordApp="vue-footer-app" (hook)="onFooterLifecycleEvent($event)"></footer>
 ```
 
 ## Core team

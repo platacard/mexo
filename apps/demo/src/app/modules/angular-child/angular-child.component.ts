@@ -1,18 +1,13 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 
-const REPLACING_PLATFORM = `import {platformMicrozordChild} from '@microzord/angular/child';
-import {enableProdMode} from '@microzord/angular/child';
+const CODE = `import {createApp} from '@microzord/angular/child';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {AppModule} from './app.module';
 
-import {AppModule} from './app/app.module';
-import {environment} from './environments/environment';
-
-if (environment.production) {
-  enableProdMode();
-}
-
-platformMicrozordChild('microzord-app-name', 'app-root-tag')
-  .bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+export const myRemoteApp = createApp(
+  opts => platformBrowserDynamic().bootstrapModule(AppModule, opts),
+  'my-remote-app',
+);
 `;
 
 @Component({
@@ -22,5 +17,5 @@ platformMicrozordChild('microzord-app-name', 'app-root-tag')
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AngularChildComponent {
-  readonly replacingPlatform = REPLACING_PLATFORM;
+  readonly code = CODE;
 }

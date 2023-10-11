@@ -10,14 +10,6 @@ export const ROUTES: Route[] = [
     },
   },
   {
-    path: 'asset-map',
-    loadChildren: () =>
-      import('./modules/asset-map/asset-map.module').then(m => m.AssetMapModule),
-    data: {
-      title: `What is an asset map`,
-    },
-  },
-  {
     path: 'application',
     loadChildren: () =>
       import('./modules/application/application.module').then(m => m.ApplicationModule),
