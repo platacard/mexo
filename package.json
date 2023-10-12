@@ -92,7 +92,7 @@
     "@babel/core": "7.23.0",
     "@babel/preset-env": "7.22.20",
     "@babel/preset-react": "7.22.15",
-    "@babel/preset-typescript": "7.23.0",
+    "@babel/preset-typescript": "7.23.2",
     "@commitlint/config-conventional": "12.1.4",
     "@ng-builders/semrel": "1.5.0",
     "@ngneat/spectator": "8.3.2",
