@@ -32,7 +32,7 @@ import {AppComponent} from './app.component';
         },
         {
           name: 'remote-react',
-          load: () => import('remoteReact/remote-react-app').then(x => x.default),
+          load: () => import('remote-react/remote-react-app').then(x => x.default),
         },
       ],
     }),

@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import {generateRoutes, TuiAddonDocModule} from '@taiga-ui/addon-doc';
+import {tuiGenerateRoutes, TuiAddonDocModule} from '@taiga-ui/addon-doc';
 import {TuiLinkModule} from '@taiga-ui/core';
 import {HostChildWarningModule} from '../../shared/host-child-warning/host-child-warning.module';
 import {AngularInstallationComponent} from './angular-installation.component';
@@ -10,7 +10,7 @@ import {AngularInstallationComponent} from './angular-installation.component';
     TuiLinkModule,
     TuiAddonDocModule,
     HostChildWarningModule,
-    RouterModule.forChild(generateRoutes(AngularInstallationComponent)),
+    RouterModule.forChild(tuiGenerateRoutes(AngularInstallationComponent)),
   ],
   declarations: [AngularInstallationComponent],
   exports: [AngularInstallationComponent],

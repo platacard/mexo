@@ -1,11 +1,12 @@
 {
+  "name": "demo",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "root": "apps/demo",
   "sourceRoot": "apps/demo/src",
   "prefix": "microzord",
   "targets": {
     "build": {
-      "executor": "@nrwl/angular:webpack-browser",
+      "executor": "@nx/angular:webpack-browser",
       "options": {
         "outputPath": "dist/apps/demo",
         "index": "apps/demo/src/index.html",
@@ -22,9 +23,9 @@
           }
         ],
         "styles": [
-          "apps/demo/src/styles.less",
-          "node_modules/@taiga-ui/core/styles/taiga-ui-global.less",
-          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less"
+          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
+          "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
+          "apps/demo/src/styles.less"
         ],
         "scripts": [],
         "vendorChunk": true,
@@ -70,7 +71,7 @@
       "defaultConfiguration": ""
     },
     "serve": {
-      "executor": "@nrwl/angular:webpack-server",
+      "executor": "@nx/angular:webpack-dev-server",
       "options": {
         "browserTarget": "demo:build",
         "port": 4202
@@ -82,7 +83,7 @@
       }
     },
     "build-gh-pages": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "parallel": false,
         "commands": [
@@ -101,17 +102,17 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": ["apps/demo/src/**/*.ts", "apps/demo/src/**/*.html"]
       },
       "outputs": ["{options.outputFile}"]
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/demo"],
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/demo"],
       "options": {
-        "jestConfig": "apps/demo/jest.config.js",
+        "jestConfig": "apps/demo/jest.config.ts",
         "passWithNoTests": true,
         "coverageDirectory": "coverage/demo"
       }

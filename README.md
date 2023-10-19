@@ -18,6 +18,13 @@ It is a small tool that allows you to add and render multiple apps on one page. 
 
 🐝 **Tiny as a bee and works as well**. No new code in the bundle of child application and a bit more than 1 KB library for host application to get all the benefits!
 
+## Angular version support
+
+| Version | Angular version |
+| ------- | --------------- |
+| v2.x    | 16+             |
+| v1.x    | 12 - 15         |
+
 ## Installation and usage
 
 An extensive demo is coming soon...

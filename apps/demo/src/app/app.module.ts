@@ -10,15 +10,15 @@ import {LOGO_CONTENT} from './logo/logo.component';
 import {pages} from './pages';
 import {GettingStartedModule} from './getting-started/getting-started.module';
 import {ROUTES} from './routes';
-import {HIGHLIGHT_OPTIONS} from 'ngx-highlightjs';
+import {HIGHLIGHT_OPTIONS, HighlightOptions} from 'ngx-highlightjs';
 
-export const HIGHLIGHT_OPTIONS_VALUE = {
-  coreLibraryLoader: () => import('highlight.js/lib/core' as string),
+export const HIGHLIGHT_OPTIONS_VALUE: HighlightOptions = {
+  coreLibraryLoader: () => import('highlight.js/lib/core'),
   lineNumbersLoader: () => import('highlightjs-line-numbers.js' as string),
   languages: {
-    typescript: () => import('highlight.js/lib/languages/typescript' as string),
-    less: () => import('highlight.js/lib/languages/less' as string),
-    xml: () => import('highlight.js/lib/languages/xml' as string),
+    typescript: () => import('highlight.js/lib/languages/typescript'),
+    less: () => import('highlight.js/lib/languages/less'),
+    xml: () => import('highlight.js/lib/languages/xml'),
   },
 };
 
@@ -30,7 +30,7 @@ export const HIGHLIGHT_OPTIONS_VALUE = {
     TuiDocMainModule,
     TuiLinkModule,
     GettingStartedModule,
-    RouterModule.forRoot(ROUTES, {initialNavigation: 'enabled'}),
+    RouterModule.forRoot(ROUTES, {initialNavigation: 'enabledBlocking'}),
   ],
   providers: [
     {

@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import {generateRoutes, TuiAddonDocModule} from '@taiga-ui/addon-doc';
+import {tuiGenerateRoutes, TuiAddonDocModule} from '@taiga-ui/addon-doc';
 import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
 import {ApplicationComponent} from './application.component';
 
@@ -9,7 +9,7 @@ import {ApplicationComponent} from './application.component';
     TuiLinkModule,
     TuiAddonDocModule,
     TuiNotificationModule,
-    RouterModule.forChild(generateRoutes(ApplicationComponent)),
+    RouterModule.forChild(tuiGenerateRoutes(ApplicationComponent)),
   ],
   declarations: [ApplicationComponent],
   exports: [ApplicationComponent],

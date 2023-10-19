@@ -4,21 +4,25 @@ import {
   MicrozordLifecycleEvent,
   MicrozordMessageEvent,
 } from '@microzord/core';
-import ReactDOM from 'react-dom';
-import React, {ReactElement} from 'react';
+import {Root, createRoot} from 'react-dom/client';
+import {ReactElement} from 'react';
 
 export function createApp<P>(
   name: string,
   element: ReactElement<P>,
 ): ApplicationConstructor {
   class ReactApplication extends Application {
+    private root: Root | undefined;
     async bootstrap(container: string | Element, props?: Record<string, any>) {
       container =
         typeof container === 'string' ? document.querySelector(container)! : container;
 
+      this.root = createRoot(container);
       await super.bootstrap(container, props);
 
-      ReactDOM.render(element, container, () => {
+      this.root.render(element);
+      //https://github.com/reactwg/react-18/discussions/5#discussioncomment-796012
+      requestIdleCallback(() => {
         this.emitHook(MicrozordLifecycleEvent.bootstrapped());
       });
     }
@@ -26,12 +30,9 @@ export function createApp<P>(
     destroy() {
       super.destroy();
 
-      this.container =
-        typeof this.container === 'string'
-          ? document.querySelector(this.container)!
-          : this.container;
-
-      ReactDOM.unmountComponentAtNode(this.container);
+      if (this.root) {
+        this.root.unmount();
+      }
       this.container = '';
 
       this.emitHook(MicrozordLifecycleEvent.destroyed());

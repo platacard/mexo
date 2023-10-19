@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0
       - uses: taiga-family/ci/actions/setup/node@v1.33.4
       - uses: taiga-family/ci/actions/setup/config/npm@v1.33.4
-        with: 
+        with:
           token: ${{ secrets.NPM_TOKEN }}
       - run: npm run release
         env:

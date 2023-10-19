@@ -6,7 +6,7 @@ declare module 'remote/remote-app-bootstrap' {
     Record<string, unknown>
   >;
 }
-declare module 'remoteReact/remote-react-app' {
+declare module 'remote-react/remote-react-app' {
   const x: import('@microzord/core').ApplicationConstructor<Record<string, unknown>>;
   export default x;
 }

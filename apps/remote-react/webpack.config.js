@@ -1,36 +1,14 @@
-const nrwlConfig = require('@nrwl/react/plugins/webpack.js');
-const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const {composePlugins, withNx} = require('@nx/webpack');
+const {withReact} = require('@nx/react');
+const {withModuleFederation} = require('@nx/react/module-federation');
 
-const deps = require('../../package.json').dependencies;
+const baseConfig = require('./module-federation.config');
 
-module.exports = config => {
-  nrwlConfig(config); // first call it so that it @nrwl/react plugin adds its configs,
-
-  // then override your config.
-  return {
-    ...config,
-    optimization: {
-      splitChunks: false,
-    },
-    plugins: [
-      ...config.plugins,
-      new ModuleFederationPlugin({
-        name: 'remoteReact',
-        filename: 'remoteEntry.js',
-        exposes: {
-          './remote-react-app': 'apps/remote-react/src/app/remote-react-app',
-        },
-        shared: {
-          react: {
-            singleton: true,
-            requiredVersion: deps['react'],
-          },
-          'react-dom': {
-            singleton: true,
-            requiredVersion: deps['react-dom'],
-          },
-        },
-      }),
-    ],
-  };
+const config = {
+  ...baseConfig,
 };
+
+// Nx plugins for webpack to build config object from Nx options and context.
+const webpackConfig = composePlugins(withNx(), withReact(), withModuleFederation(config));
+
+module.exports = webpackConfig;

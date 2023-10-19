@@ -1,17 +1,18 @@
 {
+  "name": "host",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "root": "apps/host",
   "sourceRoot": "apps/host/src",
   "prefix": "microzord",
   "targets": {
     "build": {
-      "executor": "@nrwl/angular:webpack-browser",
+      "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/host",
         "index": "apps/host/src/index.html",
         "main": "apps/host/src/main.ts",
-        "polyfills": "apps/host/src/polyfills.ts",
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/host/tsconfig.app.json",
         "inlineStyleLanguage": "less",
         "assets": [
@@ -24,8 +25,8 @@
           }
         ],
         "styles": [
-          "node_modules/@taiga-ui/core/styles/taiga-ui-global.less",
           "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
+          "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
           "apps/host/src/styles.less"
         ],
         "scripts": [],
@@ -70,7 +71,7 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@nrwl/angular:webpack-server",
+      "executor": "@nx/angular:module-federation-dev-server",
       "configurations": {
         "production": {
           "browserTarget": "host:build:production"
@@ -80,7 +81,9 @@
         }
       },
       "defaultConfiguration": "development",
-      "options": {}
+      "options": {
+        "publicHost": "http://localhost:4200/"
+      }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
@@ -89,22 +92,22 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": ["apps/host/src/**/*.ts", "apps/host/src/**/*.html"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/host"],
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/host"],
       "options": {
-        "jestConfig": "apps/host/jest.config.js",
+        "jestConfig": "apps/host/jest.config.ts",
         "passWithNoTests": true,
         "coverageDirectory": "coverage/host"
       }
     },
     "serve-mfe": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": ["nx serve remote", "nx serve host"]
       }

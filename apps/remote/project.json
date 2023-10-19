@@ -1,11 +1,12 @@
 {
+  "name": "remote",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "root": "apps/remote",
   "sourceRoot": "apps/remote/src",
   "prefix": "microzord",
   "targets": {
     "build": {
-      "executor": "@nrwl/angular:webpack-browser",
+      "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/remote",
@@ -58,7 +59,7 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@nrwl/angular:webpack-server",
+      "executor": "@nx/angular:webpack-dev-server",
       "configurations": {
         "production": {
           "browserTarget": "remote:build:production"
@@ -69,7 +70,8 @@
       },
       "defaultConfiguration": "development",
       "options": {
-        "port": 4201
+        "port": 4201,
+        "publicHost": "http://localhost:4201"
       }
     },
     "extract-i18n": {
@@ -79,18 +81,35 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": ["apps/remote/src/**/*.ts", "apps/remote/src/**/*.html"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/remote"],
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/remote"],
       "options": {
-        "jestConfig": "apps/remote/jest.config.js",
+        "jestConfig": "apps/remote/jest.config.ts",
         "passWithNoTests": true,
         "coverageDirectory": "coverage/remote"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "remote:build",
+        "port": 4201,
+        "watch": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "remote:build:development"
+        },
+        "production": {
+          "buildTarget": "remote:build:production"
+        }
       }
     }
   },
