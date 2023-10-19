@@ -54,7 +54,7 @@
     "@angular/compiler": "16.2.10",
     "@angular/core": "16.2.8",
     "@angular/forms": "16.2.8",
-    "@angular/platform-browser": "16.2.8",
+    "@angular/platform-browser": "16.2.10",
     "@angular/platform-browser-dynamic": "16.2.8",
     "@angular/router": "16.2.8",
     "@ng-web-apis/common": "3.0.3",
