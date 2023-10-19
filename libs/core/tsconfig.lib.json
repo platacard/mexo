@@ -11,6 +11,7 @@
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
+    "compilationMode": "partial",
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
     "enableResourceInlining": true
