@@ -86,7 +86,7 @@
     "@angular/cdk": "16.2.9",
     "@angular/cli": "16.2.0",
     "@angular/compiler-cli": "16.2.10",
-    "@babel/core": "7.23.0",
+    "@babel/core": "7.23.2",
     "@babel/preset-env": "7.23.2",
     "@babel/preset-react": "7.22.15",
     "@babel/preset-typescript": "7.23.2",
