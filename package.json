@@ -50,7 +50,7 @@
   "dependencies": {
     "@angular-architects/module-federation": "12.5.3",
     "@angular/animations": "16.2.10",
-    "@angular/common": "16.2.8",
+    "@angular/common": "16.2.10",
     "@angular/compiler": "16.2.10",
     "@angular/core": "16.2.8",
     "@angular/forms": "16.2.8",
