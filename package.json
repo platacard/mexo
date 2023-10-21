@@ -55,7 +55,7 @@
     "@angular/core": "16.2.10",
     "@angular/forms": "16.2.8",
     "@angular/platform-browser": "16.2.10",
-    "@angular/platform-browser-dynamic": "16.2.8",
+    "@angular/platform-browser-dynamic": "16.2.10",
     "@angular/router": "16.2.10",
     "@ng-web-apis/common": "3.0.3",
     "@nx/angular": "16.10.0",
