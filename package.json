@@ -92,7 +92,7 @@
     "@babel/preset-typescript": "7.23.2",
     "@commitlint/config-conventional": "18.1.0",
     "@ng-builders/semrel": "1.5.0",
-    "@ngneat/spectator": "8.3.2",
+    "@ngneat/spectator": "15.0.1",
     "@nx/cypress": "17.0.2",
     "@nx/eslint-plugin": "16.10.0",
     "@nx/jest": "16.10.0",
