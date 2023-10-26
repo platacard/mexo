@@ -2,6 +2,6 @@
   "name": "@microzord/react",
   "version": "0.0.0-development",
   "dependencies": {
-    "@microzord/core": "0.0.0-development"
+    "@microzord/core": "2.0.1"
   }
 }
