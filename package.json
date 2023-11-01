@@ -57,7 +57,7 @@
     "@angular/platform-browser": "16.2.11",
     "@angular/platform-browser-dynamic": "16.2.11",
     "@angular/router": "16.2.11",
-    "@ng-web-apis/common": "3.0.5",
+    "@ng-web-apis/common": "3.0.6",
     "@nx/angular": "16.10.0",
     "@swc/helpers": "0.5.3",
     "@taiga-ui/addon-doc": "3.52.0",
