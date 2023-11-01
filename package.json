@@ -105,7 +105,7 @@
     "@nx/webpack": "16.10.0",
     "@nx/workspace": "16.10.0",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.11",
-    "@schematics/angular": "16.2.8",
+    "@schematics/angular": "16.2.9",
     "@svgr/webpack": "8.1.0",
     "@swc-node/register": "1.6.8",
     "@swc/cli": "0.1.62",
