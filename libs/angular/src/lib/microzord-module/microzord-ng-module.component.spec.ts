@@ -5,7 +5,7 @@ import {Component, NgModule, NgModuleRef, Type} from '@angular/core';
 import {EntryPoint, MicrozordNgModule} from '../types/ng-module';
 import {first} from 'rxjs/operators';
 
-@Component({template: ''})
+@Component({template: '', selector: 'mock-component'})
 class MockComponent implements EntryPoint {}
 
 @NgModule({})
@@ -56,7 +56,7 @@ describe('MicrozordModuleDirective', () => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const destroySpy = jest.spyOn(moduleRef!, 'destroy');
 
-    spectator.setHostInput('name', 'sss');
+    spectator.setHostInput('name', '');
     const newModuleRef = await spectator.directive.module.pipe(first()).toPromise();
 
     expect(newModuleRef).toBeNull();

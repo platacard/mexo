@@ -81,7 +81,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": ["apps/remote/src/**/*.ts", "apps/remote/src/**/*.html"]
       }
