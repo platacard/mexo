@@ -87,7 +87,7 @@
     "@angular/compiler-cli": "16.2.12",
     "@babel/core": "7.23.3",
     "@babel/preset-env": "7.23.3",
-    "@babel/preset-react": "7.22.15",
+    "@babel/preset-react": "7.23.3",
     "@babel/preset-typescript": "7.23.3",
     "@commitlint/config-conventional": "18.1.0",
     "@ng-builders/semrel": "1.5.0",
