@@ -13,7 +13,7 @@ export function createApp<P>(
 ): ApplicationConstructor {
   class ReactApplication extends Application {
     private root: Root | undefined;
-    async bootstrap(container: string | Element, props?: Record<string, any>) {
+    async bootstrap(container: string | Element, props?: Record<string, unknown>) {
       container =
         typeof container === 'string' ? document.querySelector(container)! : container;
 
@@ -38,11 +38,11 @@ export function createApp<P>(
       this.emitHook(MicrozordLifecycleEvent.destroyed());
     }
 
-    async navigate(url: string, props: unknown | undefined): Promise<void> {
+    async navigate(_url: string, _props: unknown | undefined): Promise<void> {
       return undefined;
     }
 
-    async send(msg: string | MicrozordMessageEvent): Promise<void> {
+    async send(_msg: string | MicrozordMessageEvent): Promise<void> {
       return undefined;
     }
   }

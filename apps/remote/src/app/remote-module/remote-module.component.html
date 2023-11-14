@@ -1,3 +1,9 @@
 <h2>Remote module component</h2>
 
 <button (click)="click()">Counter: {{ counter }}</button>
+
+@if (counter % 2) {
+<p>Counter is odd</p>
+} @else {
+<p>Counter is even</p>
+}

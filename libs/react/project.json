@@ -36,7 +36,6 @@
       "outputs": ["{workspaceRoot}/coverage/react"],
       "options": {
         "jestConfig": "libs/react/jest.config.ts",
-        "passWithNoTests": true,
         "coverageDirectory": "coverage/react"
       }
     }

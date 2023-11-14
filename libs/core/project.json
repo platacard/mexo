@@ -33,7 +33,6 @@
       "outputs": ["{workspaceRoot}/coverage/core"],
       "options": {
         "jestConfig": "libs/core/jest.config.ts",
-        "passWithNoTests": true,
         "coverageDirectory": "coverage/core"
       }
     },

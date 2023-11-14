@@ -33,7 +33,6 @@
       "outputs": ["{workspaceRoot}/coverage/angular"],
       "options": {
         "jestConfig": "libs/angular/jest.config.ts",
-        "passWithNoTests": true,
         "coverageDirectory": "coverage/angular"
       }
     },

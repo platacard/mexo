@@ -79,8 +79,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/apps/remote-react"],
       "options": {
-        "jestConfig": "apps/remote-react/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "apps/remote-react/jest.config.ts"
       }
     },
     "serve-static": {

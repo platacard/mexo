@@ -1,5 +1,5 @@
 declare module 'remote/remote-module' {
-  export const RemoteModule: import('@microzord/angular').MicrozordModule;
+  export const RemoteModule: import('@angular/core').Type<import('@microzord/angular').MicrozordNgModule>;
 }
 declare module 'remote/remote-app-bootstrap' {
   export const remoteAppBootstrap: import('@microzord/core').ApplicationConstructor<

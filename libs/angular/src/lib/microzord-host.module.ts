@@ -9,7 +9,7 @@ import {NgModuleRegistrationOptions} from './types/ng-module';
 
 export interface MicrozordHostModuleOptions {
   apps?: AppRegistrationOptions[];
-  modules?: EntityRegistrationOptions<Type<any>>[];
+  modules?: EntityRegistrationOptions<Type<unknown>>[];
 }
 
 @NgModule({

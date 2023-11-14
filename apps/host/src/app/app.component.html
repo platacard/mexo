@@ -7,14 +7,18 @@
   </div>
 
   <div class="embed-container">
-    <h2>Apps (microzordApp) <button (click)="toggleApps()">toggle apps</button></h2>
+    <h2>
+      Apps (microzordApp)
+      <button (click)="toggleApps()">toggle apps</button>
+    </h2>
 
+    @for (app of apps$ | async; track app) {
     <div
-      *ngFor="let app of apps$ | async"
       class="embedded"
       [microzordApp]="app"
       (application)="appLoaded($event)"
       (hook)="appHook($event)"
     ></div>
+    }
   </div>
 </tui-root>

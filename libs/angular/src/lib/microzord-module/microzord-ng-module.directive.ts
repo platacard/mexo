@@ -24,7 +24,7 @@ export class MicrozordNgModuleDirective implements OnDestroy {
   private destroy$ = new Subject<void>();
 
   @Output()
-  module: Observable<NgModuleRef<any> | null>;
+  module: Observable<NgModuleRef<unknown> | null>;
 
   @Input('microzordNgModule')
   set name(moduleName: string | null) {
@@ -57,7 +57,7 @@ export class MicrozordNgModuleDirective implements OnDestroy {
   }
 
   private loadModuleAndBootstrap(name: string): Observable<ComponentRef<EntryPoint>> {
-    return loadEntity<any, MicrozordNgModule>(name).pipe(
+    return loadEntity<unknown, MicrozordNgModule>(name).pipe(
       switchMap(Module => this.mzNgCompiler.createEntryPointFromModule(Module)),
       complete(componentRef => this.destroyComponentAndModule(componentRef)),
     );

@@ -33,11 +33,11 @@ describe('MicrozordNgCompilerService', () => {
         mockProvider(ViewContainerRef, {
           clear: () => undefined,
           createComponent(
-            componentFactory: ComponentFactory<any>,
+            componentFactory: ComponentFactory<unknown>,
             index: number,
             injector: Injector,
-            projectableNodes: any[][],
-            ngModule: NgModuleRef<any>,
+            projectableNodes: unknown[][],
+            ngModule: NgModuleRef<unknown>,
           ) {
             return componentFactory.create(
               injector,

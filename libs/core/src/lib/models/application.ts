@@ -1,11 +1,12 @@
 import {MicrozordEvent, MicrozordMessageEvent, MicrozordNavigationEvent} from './events';
 import {MicrozordLifecycleEvent} from './lifecycle';
 import {EntityConstructor} from './entity';
+import {DefaultPropsType} from './default-props-type';
 
 export type Listener<T extends MicrozordEvent> = (event: T) => void;
 
 export abstract class Application<
-  T extends Record<string, unknown> = Record<string, unknown>,
+  T extends DefaultPropsType = DefaultPropsType,
 > {
   isBootstrapped = false;
   isDestroyed = true;
@@ -15,7 +16,6 @@ export abstract class Application<
   protected readonly message = new Set<Listener<MicrozordMessageEvent>>();
   protected readonly navigationEvent = new Set<Listener<MicrozordNavigationEvent>>();
 
-  // todo: заспекать типы props
   constructor(public readonly name: string, public props?: T) {}
 
   onMessage(fn: Listener<MicrozordMessageEvent>): () => void {

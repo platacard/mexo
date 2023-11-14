@@ -4,10 +4,6 @@ import {EntityConstructor} from './models/entity';
 export class MicrozordRegistry<K, V> {
   private _map = new Map<K, V>();
 
-  getMap(): ReadonlyMap<K, V> {
-    return this._map;
-  }
-
   clear(): void {
     this._map.clear();
   }
@@ -21,14 +17,14 @@ export class MicrozordRegistry<K, V> {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const entityOptionsRegistry = new MicrozordRegistry<
   string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   EntityRegistrationOptions<any>
 >();
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const loadedEntityRegistry = new MicrozordRegistry<
   string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   EntityConstructor<any, any>
 >();

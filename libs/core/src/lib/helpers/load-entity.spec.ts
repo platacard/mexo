@@ -2,6 +2,7 @@ import {ApplicationMock} from '@microzord/core/testing';
 import {registerEntity} from './register-entity';
 import {loadEntity} from './load-entity';
 import {of} from 'rxjs';
+import {EntityRegistrationOptions} from '../models/registration-options';
 
 describe('loadEntity', () => {
   beforeEach(async () => {
@@ -14,8 +15,8 @@ describe('loadEntity', () => {
 
     registerEntity({
       name: 'appMock2',
-      load: null,
-    } as any);
+      load: undefined,
+    } as unknown as EntityRegistrationOptions<unknown>);
 
     registerEntity({
       name: 'appMock3',

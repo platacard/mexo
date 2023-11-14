@@ -1,7 +1,7 @@
 import {Application} from './application';
 
 export class MicrozordEvent {
-  target: Application<any> | null = null;
+  target: Application | null = null;
   constructor(public readonly type: string) {}
 }
 
