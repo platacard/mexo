@@ -45,7 +45,7 @@ jobs:
       - run: npm run test --coverage --coverageReporters lcov
       - run: echo "::set-output name=projectMatrix::$(npx nx print-affected --target test --select tasks.target.project)"
         id: set-project-matrix
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v7
         id: parsed-project-matrix
         env:
           PROJECTS: '${{ steps.set-project-matrix.outputs.projectMatrix }}'
