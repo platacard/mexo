@@ -86,7 +86,7 @@
     "@angular/cli": "17.0.6",
     "@angular/compiler-cli": "17.0.6",
     "@babel/core": "7.23.6",
-    "@babel/preset-env": "7.23.5",
+    "@babel/preset-env": "7.23.6",
     "@babel/preset-react": "7.23.3",
     "@babel/preset-typescript": "7.23.3",
     "@commitlint/config-conventional": "18.4.3",
