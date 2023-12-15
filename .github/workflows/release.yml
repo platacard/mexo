@@ -30,7 +30,7 @@ jobs:
           fetch-depth: 0
       - uses: taiga-family/ci/actions/setup/node@v1.45.2
       - run: npx nx run-many --target test --all --coverage --coverageReporters lcov
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: |
