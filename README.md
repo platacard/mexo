@@ -1,9 +1,5 @@
 # <img src="apps/demo/src/assets/images/microzord.png" alt="microzord logo" width="36px"> microzord
 
-## Attention: WIP
-
-It is a pre-alpha version of the library. Please, do not use it until official release.
-
 [![npm version](https://img.shields.io/npm/v/@microzord/core.svg)](https://npmjs.com/package/@microzord/core)
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/@microzord/core)](https://bundlephobia.com/result?p=@microzord/core)
 [![codecov](https://codecov.io/gh/taiga-family/microzord/branch/alpha/graph/badge.svg?token=MPSKF8YX7H)](https://codecov.io/gh/taiga-family/microzord)
