@@ -76,14 +76,14 @@
     "zone.js": "0.14.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "17.0.8",
-    "@angular-devkit/core": "17.0.8",
-    "@angular-devkit/schematics": "17.0.8",
+    "@angular-devkit/build-angular": "17.0.9",
+    "@angular-devkit/core": "17.0.9",
+    "@angular-devkit/schematics": "17.0.9",
     "@angular-eslint/eslint-plugin": "17.1.1",
     "@angular-eslint/eslint-plugin-template": "17.1.1",
     "@angular-eslint/template-parser": "17.1.1",
     "@angular/cdk": "17.0.4",
-    "@angular/cli": "17.0.8",
+    "@angular/cli": "17.0.9",
     "@angular/compiler-cli": "17.0.8",
     "@babel/core": "7.23.7",
     "@babel/preset-env": "7.23.7",
