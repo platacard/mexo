@@ -145,7 +145,7 @@
     "style-loader": "3.3.4",
     "stylus": "0.62.0",
     "stylus-loader": "8.0.0",
-    "ts-jest": "29.1.1",
+    "ts-jest": "29.1.2",
     "ts-node": "10.9.2",
     "tsconfig-paths": "4.2.0",
     "typescript": "5.2.2",
