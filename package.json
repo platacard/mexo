@@ -150,7 +150,7 @@
     "tsconfig-paths": "4.2.0",
     "typescript": "5.2.2",
     "url-loader": "4.1.1",
-    "webpack": "5.89.0",
+    "webpack": "5.90.0",
     "@nx/eslint": "17.2.8"
   },
   "husky": {
