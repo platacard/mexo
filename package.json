@@ -140,7 +140,7 @@
     "nx": "18.0.0",
     "postcss": "8.4.33",
     "postcss-preset-env": "9.3.0",
-    "prettier": "3.2.4",
+    "prettier": "3.2.5",
     "react-refresh": "0.14.0",
     "style-loader": "3.3.4",
     "stylus": "0.62.0",
