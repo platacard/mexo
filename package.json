@@ -136,7 +136,7 @@
     "jest-environment-jsdom": "29.7.0",
     "jest-preset-angular": "13.1.5",
     "lint-staged": "15.2.2",
-    "ng-packagr": "17.1.2",
+    "ng-packagr": "17.2.0",
     "nx": "18.0.4",
     "postcss": "8.4.35",
     "postcss-preset-env": "9.3.0",
