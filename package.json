@@ -112,7 +112,7 @@
     "@tinkoff/linters": "1.52.1",
     "@types/jest": "29.5.12",
     "@types/node": "20.11.19",
-    "@types/react": "18.2.56",
+    "@types/react": "18.2.57",
     "@types/react-dom": "18.2.19",
     "@types/react-router-dom": "5.3.3",
     "@types/webpack": "5.28.5",
