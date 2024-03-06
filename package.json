@@ -103,7 +103,7 @@
     "@nx/webpack": "18.0.7",
     "@nx/workspace": "18.0.7",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.11",
-    "@schematics/angular": "17.2.2",
+    "@schematics/angular": "17.2.3",
     "@svgr/webpack": "8.1.0",
     "@swc-node/register": "1.9.0",
     "@swc/cli": "0.3.10",
