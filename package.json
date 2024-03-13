@@ -139,7 +139,7 @@
     "ng-packagr": "17.3.0",
     "nx": "18.0.7",
     "postcss": "8.4.35",
-    "postcss-preset-env": "9.5.0",
+    "postcss-preset-env": "9.5.1",
     "prettier": "3.2.5",
     "react-refresh": "0.14.0",
     "style-loader": "3.3.4",
