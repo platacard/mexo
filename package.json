@@ -88,7 +88,7 @@
     "@babel/core": "7.24.1",
     "@babel/preset-env": "7.24.1",
     "@babel/preset-react": "7.24.1",
-    "@babel/preset-typescript": "7.23.3",
+    "@babel/preset-typescript": "7.24.1",
     "@commitlint/config-conventional": "19.1.0",
     "@ng-builders/semrel": "1.5.0",
     "@ngneat/spectator": "17.1.0",
