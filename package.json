@@ -108,7 +108,7 @@
     "@swc-node/register": "1.9.1",
     "@swc/cli": "0.3.12",
     "@swc/core": "1.5.7",
-    "@testing-library/react": "14.2.2",
+    "@testing-library/react": "15.0.7",
     "@tinkoff/linters": "1.52.1",
     "@types/jest": "29.5.12",
     "@types/node": "20.12.12",
