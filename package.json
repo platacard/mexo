@@ -120,7 +120,7 @@
     "@typescript-eslint/parser": "7.5.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "29.7.0",
-    "commitlint": "19.2.1",
+    "commitlint": "19.3.0",
     "css-loader": "7.0.0",
     "cypress": "13.7.2",
     "dotenv": "16.4.5",
