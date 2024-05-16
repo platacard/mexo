@@ -142,7 +142,7 @@
     "postcss-preset-env": "9.5.13",
     "prettier": "3.2.5",
     "react-refresh": "0.14.2",
-    "style-loader": "3.3.4",
+    "style-loader": "4.0.0",
     "stylus": "0.63.0",
     "stylus-loader": "8.1.0",
     "ts-jest": "29.1.2",
