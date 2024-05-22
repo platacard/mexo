@@ -1,6 +1,7 @@
-import {registerApp} from './register-app';
-import {ApplicationMock} from '@microzord/core/testing';
-import {entityOptionsRegistry} from '../registry';
+import { ApplicationMock } from '@mexo/core/testing';
+
+import { entityOptionsRegistry } from '../registry';
+import { registerApp } from './register-app';
 
 describe('registerApp', () => {
   beforeEach(async () => {

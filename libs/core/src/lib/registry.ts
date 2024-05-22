@@ -1,7 +1,7 @@
-import {EntityRegistrationOptions} from './models/registration-options';
-import {EntityConstructor} from './models/entity';
+import { EntityConstructor } from './models/entity';
+import { EntityRegistrationOptions } from './models/registration-options';
 
-export class MicrozordRegistry<K, V> {
+export class MexoRegistry<K, V> {
   private _map = new Map<K, V>();
 
   clear(): void {
@@ -17,13 +17,13 @@ export class MicrozordRegistry<K, V> {
   }
 }
 
-export const entityOptionsRegistry = new MicrozordRegistry<
+export const entityOptionsRegistry = new MexoRegistry<
   string,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   EntityRegistrationOptions<any>
 >();
 
-export const loadedEntityRegistry = new MicrozordRegistry<
+export const loadedEntityRegistry = new MexoRegistry<
   string,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   EntityConstructor<any, any>

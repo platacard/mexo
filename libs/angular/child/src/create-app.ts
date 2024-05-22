@@ -1,7 +1,17 @@
-import {CompilerOptions, InjectFlags, InjectionToken, NgModuleRef} from '@angular/core';
-import {Application, ApplicationConstructor} from '@microzord/core';
-import {Router} from '@angular/router';
-import {MicrozordLifecycleEvent, MicrozordMessageEvent} from '@microzord/core';
+import {
+  CompilerOptions,
+  InjectFlags,
+  InjectionToken,
+  NgModuleRef,
+} from '@angular/core';
+import { Router } from '@angular/router';
+
+import {
+  Application,
+  ApplicationConstructor,
+  MexoLifecycleEvent,
+  MexoMessageEvent,
+} from '@mexo/core';
 
 export const APP_NAME = new InjectionToken<string>('App name');
 export const ROOT_SELECTOR = new InjectionToken<string>('Root selector');
@@ -15,7 +25,9 @@ export function createApp<
   rootSelector: string,
 ): ApplicationConstructor {
   // todo: не хватает имплементации хуков, сообщений и навигации
-  class AngularApp<T extends Record<string, unknown> = Props> extends Application<T> {
+  class AngularApp<
+    T extends Record<string, unknown> = Props,
+  > extends Application<T> {
     private router: Router | null = null;
     private ngModule: NgModuleRef<TModule> | null = null;
 
@@ -27,12 +39,14 @@ export function createApp<
         this.ngModule = null;
       }
 
-      this.emitHook(MicrozordLifecycleEvent.destroyed());
+      this.emitHook(MexoLifecycleEvent.destroyed());
     }
 
     async bootstrap(container: string | Element, props?: T): Promise<void> {
       const containerElement =
-        typeof container === 'string' ? document.querySelector(container) : container;
+        typeof container === 'string'
+          ? document.querySelector(container)
+          : container;
 
       if (!containerElement) {
         throw new Error(`No container found for ${container}`);
@@ -43,11 +57,15 @@ export function createApp<
       containerElement.appendChild(rootElement);
 
       this.ngModule = await bootstrapFn(props);
-      this.router = this.ngModule.injector.get(Router, null, InjectFlags.Optional);
+      this.router = this.ngModule.injector.get(
+        Router,
+        null,
+        InjectFlags.Optional,
+      );
 
       await super.bootstrap(container, props);
 
-      this.emitHook(MicrozordLifecycleEvent.bootstrapped());
+      this.emitHook(MexoLifecycleEvent.bootstrapped());
     }
 
     async navigate(url: string, _props: unknown | undefined): Promise<void> {
@@ -56,7 +74,7 @@ export function createApp<
       }
     }
 
-    async send(_msg: string | MicrozordMessageEvent): Promise<void> {
+    async send(_msg: string | MexoMessageEvent): Promise<void> {
       //
     }
   }

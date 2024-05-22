@@ -1,24 +1,22 @@
-<tui-root>
-  <h1>Host App</h1>
+<h1>Host App</h1>
 
-  <div class="embed-container">
-    <h2>Modules (microzordNgModule)</h2>
-    <ng-container [microzordNgModule]="moduleName$$ | async"></ng-container>
-  </div>
+<div class="embed-container">
+  <h2>Modules (mexoNgModule)</h2>
+  <ng-container [mexoNgModule]="moduleName$$ | async"></ng-container>
+</div>
 
-  <div class="embed-container">
-    <h2>
-      Apps (microzordApp)
-      <button (click)="toggleApps()">toggle apps</button>
-    </h2>
+<div class="embed-container">
+  <h2>
+    Apps (mexoApp)
+    <button (click)="toggleApps()">toggle apps</button>
+  </h2>
 
-    @for (app of apps$ | async; track app) {
+  @for (app of apps$ | async; track app) {
     <div
       class="embedded"
-      [microzordApp]="app"
+      [mexoApp]="app"
       (application)="appLoaded($event)"
       (hook)="appHook($event)"
     ></div>
-    }
-  </div>
-</tui-root>
+  }
+</div>

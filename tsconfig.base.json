@@ -16,11 +16,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@microzord/angular": ["libs/angular/src/index.ts"],
-      "@microzord/angular/*": ["libs/angular/*"],
-      "@microzord/core": ["libs/core/src/index.ts"],
-      "@microzord/core/testing": ["libs/core/testing/src/index.ts"],
-      "@microzord/react": ["libs/react/src/index.ts"]
+      "@mexo/angular": ["libs/angular/src/index.ts"],
+      "@mexo/angular/*": ["libs/angular/*"],
+      "@mexo/core": ["libs/core/src/index.ts"],
+      "@mexo/core/testing": ["libs/core/testing/src/index.ts"],
+      "@mexo/react": ["libs/react/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

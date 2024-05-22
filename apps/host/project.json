@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/host/src",
-  "prefix": "microzord",
+  "prefix": "mexo",
   "targets": {
     "build": {
       "executor": "@nx/angular:webpack-browser",
@@ -15,20 +15,8 @@
         "polyfills": ["zone.js"],
         "tsConfig": "apps/host/tsconfig.app.json",
         "inlineStyleLanguage": "less",
-        "assets": [
-          "apps/host/src/favicon.ico",
-          "apps/host/src/assets",
-          {
-            "glob": "**/*",
-            "input": "node_modules/@taiga-ui/icons/src",
-            "output": "assets/taiga-ui/icons"
-          }
-        ],
-        "styles": [
-          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
-          "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
-          "apps/host/src/styles.less"
-        ],
+        "assets": ["apps/host/src/favicon.ico", "apps/host/src/assets"],
+        "styles": ["apps/host/src/styles.less"],
         "scripts": [],
         "customWebpackConfig": {
           "path": "apps/host/webpack.config.js"

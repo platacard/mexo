@@ -54,6 +54,5 @@
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/src/test-setup.[jt]s"
     ]
-  },
-  "nxCloudAccessToken": "MWJjNTg4MTItOGM4YS00M2ZlLTgzZWEtN2M1ZGU0YWI3NWFjfHJlYWQtd3JpdGU="
+  }
 }

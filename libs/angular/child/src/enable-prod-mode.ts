@@ -1,4 +1,4 @@
-import {enableProdMode as angularEnableProdMode} from '@angular/core';
+import { enableProdMode as angularEnableProdMode } from '@angular/core';
 
 /**
  * Disable Angular's development mode safely

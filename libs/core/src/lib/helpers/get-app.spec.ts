@@ -1,7 +1,8 @@
-import {ApplicationMock} from '@microzord/core/testing';
-import {registerApp} from './register-app';
-import {loadApp} from './load-app';
-import {getApp} from './get-app';
+import { ApplicationMock } from '@mexo/core/testing';
+
+import { getApp } from './get-app';
+import { loadApp } from './load-app';
+import { registerApp } from './register-app';
 
 describe('getApp', () => {
   beforeEach(async () => {

@@ -1,6 +1,8 @@
-import {defer, Observable, of} from 'rxjs';
-import {mapTo, switchMap} from 'rxjs/operators';
-import {Application} from '../models/application';
+import { mapTo, switchMap } from 'rxjs/operators';
+
+import { defer, Observable, of } from 'rxjs';
+
+import { Application } from '../models/application';
 
 export function bootstrapApp<T extends Record<string, unknown>>(
   app: Application<T>,
@@ -8,6 +10,8 @@ export function bootstrapApp<T extends Record<string, unknown>>(
   props?: T,
 ): Observable<Application<T>> {
   return of(app).pipe(
-    switchMap(app => defer(() => app.bootstrap(selector, props)).pipe(mapTo(app))),
+    switchMap((app) =>
+      defer(() => app.bootstrap(selector, props)).pipe(mapTo(app)),
+    ),
   );
 }

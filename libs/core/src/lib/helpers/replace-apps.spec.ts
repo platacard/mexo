@@ -1,7 +1,8 @@
-import {ApplicationMock} from '@microzord/core/testing';
-import {registerApp} from './register-app';
-import {constructAndBootstrapApp} from './construct-and-bootstrap-app';
-import {replaceApps} from './replace-apps';
+import { ApplicationMock } from '@mexo/core/testing';
+
+import { constructAndBootstrapApp } from './construct-and-bootstrap-app';
+import { registerApp } from './register-app';
+import { replaceApps } from './replace-apps';
 
 describe('replaceApps', () => {
   beforeEach(async () => {

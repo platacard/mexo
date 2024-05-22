@@ -1,10 +1,11 @@
-import {registerApp} from './register-app';
-import {Application} from '../models/application';
-import {AppRegistrationOptions} from '../models/registration-options';
-import {loadApp} from './load-app';
-import {constructAndBootstrapApp} from './construct-and-bootstrap-app';
-import {entityOptionsRegistry, loadedEntityRegistry} from '../registry';
-import {ApplicationMock} from '@microzord/core/testing';
+import { ApplicationMock } from '@mexo/core/testing';
+
+import { Application } from '../models/application';
+import { AppRegistrationOptions } from '../models/registration-options';
+import { entityOptionsRegistry, loadedEntityRegistry } from '../registry';
+import { constructAndBootstrapApp } from './construct-and-bootstrap-app';
+import { loadApp } from './load-app';
+import { registerApp } from './register-app';
 
 function clearRegistry() {
   loadedEntityRegistry.clear();
@@ -44,7 +45,10 @@ describe('constructAndBootstrapApp', () => {
     it('should bootstrap an app', async () => {
       expect.assertions(1);
 
-      const app = await constructAndBootstrapApp('appMock', '#container').toPromise();
+      const app = await constructAndBootstrapApp(
+        'appMock',
+        '#container',
+      ).toPromise();
 
       expect(app).toBeInstanceOf(ApplicationMock);
     });
@@ -62,7 +66,10 @@ describe('constructAndBootstrapApp', () => {
     it('should bootstrap an app', async () => {
       expect.assertions(1);
 
-      const app = await constructAndBootstrapApp('appMock', '#container').toPromise();
+      const app = await constructAndBootstrapApp(
+        'appMock',
+        '#container',
+      ).toPromise();
 
       expect(app).toBeInstanceOf(Application);
     });

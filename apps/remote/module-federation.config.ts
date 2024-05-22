@@ -1,4 +1,4 @@
-import {ModuleFederationConfig} from '@nx/webpack/src/utils/module-federation';
+import { ModuleFederationConfig } from '@nx/webpack/src/utils/module-federation';
 
 const config: ModuleFederationConfig = {
   name: 'remote',

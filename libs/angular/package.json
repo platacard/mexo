@@ -1,19 +1,6 @@
 {
-  "name": "@microzord/angular",
+  "name": "@mexo/angular",
   "version": "0.0.0-development",
-  "peerDependencies": {
-    "@angular/common": "17.3.9",
-    "@angular/core": "17.3.9",
-    "@angular/router": "17.3.9"
-  },
-  "dependencies": {
-    "tslib": "2.6.2",
-    "@microzord/core": "2.0.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "license": "Apache-2.0",
   "keywords": [
     "microfrontends",
     "single-page-application",
@@ -24,12 +11,25 @@
     "routing",
     "microservices"
   ],
-  "authors": ["Igor Katsuba <katsuba.igor@gmail.ru>", "Roman Sedov <79601794011@ya.ru>"],
+  "homepage": "https://github.com/platacard/mexo",
+  "repository": "https://github.com/platacard/mexo",
+  "license": "Apache-2.0",
   "contributors": [
-    "Igor Katsuba <katsuba.igor@gmail.ru>",
-    "Roman Sedov <79601794011@ya.ru>",
-    "Vsevolod Arutyunov <sevaru@inbox.ru>"
+    "Igor Katsuba <katsuba.igor@gmail.ru>"
   ],
-  "repository": "https://github.com/taiga-family/microzord",
-  "homepage": "https://taiga-family.github.io/microzord"
+  "dependencies": {
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "@angular/common": "17.3.9",
+    "@angular/core": "17.3.9",
+    "@angular/router": "17.3.9"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "authors": [
+    "Igor Katsuba <katsuba.igor@gmail.ru>",
+    "Roman Sedov <79601794011@ya.ru>"
+  ]
 }

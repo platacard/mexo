@@ -1,6 +1,7 @@
-import {loadApp} from './load-app';
-import {registerApp} from './register-app';
-import {ApplicationMock} from '@microzord/core/testing';
+import { ApplicationMock } from '@mexo/core/testing';
+
+import { loadApp } from './load-app';
+import { registerApp } from './register-app';
 
 describe('loadApp', () => {
   beforeEach(async () => {
@@ -17,6 +18,8 @@ describe('loadApp', () => {
 
     await loadApp('appMock1').toPromise();
 
-    expect(await loadApp('appMock1').toPromise()).toStrictEqual(ApplicationMock);
+    expect(await loadApp('appMock1').toPromise()).toStrictEqual(
+      ApplicationMock,
+    );
   });
 });

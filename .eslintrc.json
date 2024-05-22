@@ -10,7 +10,7 @@
           "error",
           {
             "enforceBuildableLibDependency": true,
-            "allow": ["@microzord/core/testing"],
+            "allow": ["@mexo/core/testing"],
             "depConstraints": [
               {
                 "sourceTag": "*",

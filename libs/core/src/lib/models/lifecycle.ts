@@ -1,32 +1,32 @@
-import {MicrozordEvent} from './events';
+import { MexoEvent } from './events';
 
 export enum LifecycleEventTypes {
   bootstrapped = 'bootstrapped',
   destroyed = 'destroyed',
 }
 
-export class MicrozordLifecycleEvent extends MicrozordEvent {
-  static isLifecycleEvent(event: MicrozordEvent): event is MicrozordLifecycleEvent {
+export class MexoLifecycleEvent extends MexoEvent {
+  static isLifecycleEvent(event: MexoEvent): event is MexoLifecycleEvent {
     return (
       event &&
       event.constructor &&
-      event.constructor.name === MicrozordLifecycleEvent.name
+      event.constructor.name === MexoLifecycleEvent.name
     );
   }
 
-  static bootstrapped(): MicrozordLifecycleEvent {
-    return new MicrozordLifecycleEvent(LifecycleEventTypes.bootstrapped);
+  static bootstrapped(): MexoLifecycleEvent {
+    return new MexoLifecycleEvent(LifecycleEventTypes.bootstrapped);
   }
 
-  static isBootstrappedEvent(event: MicrozordLifecycleEvent): boolean {
+  static isBootstrappedEvent(event: MexoLifecycleEvent): boolean {
     return event.type === LifecycleEventTypes.bootstrapped;
   }
 
-  static destroyed(): MicrozordLifecycleEvent {
-    return new MicrozordLifecycleEvent(LifecycleEventTypes.destroyed);
+  static destroyed(): MexoLifecycleEvent {
+    return new MexoLifecycleEvent(LifecycleEventTypes.destroyed);
   }
 
-  static isDestroyedEvent(event: MicrozordLifecycleEvent): boolean {
+  static isDestroyedEvent(event: MexoLifecycleEvent): boolean {
     return event.type === LifecycleEventTypes.destroyed;
   }
 }

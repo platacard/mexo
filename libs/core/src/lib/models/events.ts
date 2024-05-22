@@ -1,26 +1,28 @@
-import {Application} from './application';
+import { Application } from './application';
 
-export class MicrozordEvent {
+export class MexoEvent {
   target: Application | null = null;
   constructor(public readonly type: string) {}
 }
 
 // todo: подумать над сообщениями
-export class MicrozordMessageEvent extends MicrozordEvent {
-  static isMessageEvent(event: MicrozordEvent): event is MicrozordMessageEvent {
+export class MexoMessageEvent extends MexoEvent {
+  static isMessageEvent(event: MexoEvent): event is MexoMessageEvent {
     return (
-      event && event.constructor && event.constructor.name === MicrozordMessageEvent.name
+      event &&
+      event.constructor &&
+      event.constructor.name === MexoMessageEvent.name
     );
   }
 }
 
 // todo: подумать над ивентами роутинга
-export class MicrozordNavigationEvent extends MicrozordEvent {
-  static isNavigationEvent(event: MicrozordEvent): event is MicrozordNavigationEvent {
+export class MexoNavigationEvent extends MexoEvent {
+  static isNavigationEvent(event: MexoEvent): event is MexoNavigationEvent {
     return (
       event &&
       event.constructor &&
-      event.constructor.name === MicrozordNavigationEvent.name
+      event.constructor.name === MexoNavigationEvent.name
     );
   }
 }

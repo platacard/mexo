@@ -1,5 +1,5 @@
-import {entityOptionsRegistry} from '../registry';
-import {EntityRegistrationOptions} from '../models/registration-options';
+import { EntityRegistrationOptions } from '../models/registration-options';
+import { entityOptionsRegistry } from '../registry';
 
 export function registerEntity<
   T,

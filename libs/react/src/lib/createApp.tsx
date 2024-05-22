@@ -1,11 +1,12 @@
+import { ReactElement } from 'react';
+import { createRoot, Root } from 'react-dom/client';
+
 import {
   Application,
   ApplicationConstructor,
-  MicrozordLifecycleEvent,
-  MicrozordMessageEvent,
-} from '@microzord/core';
-import {Root, createRoot} from 'react-dom/client';
-import {ReactElement} from 'react';
+  MexoLifecycleEvent,
+  MexoMessageEvent,
+} from '@mexo/core';
 
 export function createApp<P>(
   name: string,
@@ -13,9 +14,14 @@ export function createApp<P>(
 ): ApplicationConstructor {
   class ReactApplication extends Application {
     private root: Root | undefined;
-    async bootstrap(container: string | Element, props?: Record<string, unknown>) {
+    async bootstrap(
+      container: string | Element,
+      props?: Record<string, unknown>,
+    ) {
       container =
-        typeof container === 'string' ? document.querySelector(container)! : container;
+        typeof container === 'string'
+          ? document.querySelector(container)!
+          : container;
 
       this.root = createRoot(container);
       await super.bootstrap(container, props);
@@ -23,7 +29,7 @@ export function createApp<P>(
       this.root.render(element);
       //https://github.com/reactwg/react-18/discussions/5#discussioncomment-796012
       requestIdleCallback(() => {
-        this.emitHook(MicrozordLifecycleEvent.bootstrapped());
+        this.emitHook(MexoLifecycleEvent.bootstrapped());
       });
     }
 
@@ -35,21 +41,21 @@ export function createApp<P>(
       }
       this.container = '';
 
-      this.emitHook(MicrozordLifecycleEvent.destroyed());
+      this.emitHook(MexoLifecycleEvent.destroyed());
     }
 
     async navigate(_url: string, _props: unknown | undefined): Promise<void> {
       return undefined;
     }
 
-    async send(_msg: string | MicrozordMessageEvent): Promise<void> {
+    async send(_msg: string | MexoMessageEvent): Promise<void> {
       return undefined;
     }
   }
 
   document.dispatchEvent(
-    new CustomEvent('microzord:load', {
-      detail: {name, appConstructor: ReactApplication},
+    new CustomEvent('mexo:load', {
+      detail: { name, appConstructor: ReactApplication },
     }),
   );
 

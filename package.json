@@ -1,7 +1,7 @@
 {
-  "name": "microzord",
+  "name": "mexo",
   "version": "0.0.0",
-  "license": "Apache-2.0",
+  "private": true,
   "keywords": [
     "microfrontends",
     "single-page-application",
@@ -11,42 +11,54 @@
     "routing",
     "microservices"
   ],
-  "authors": ["Igor Katsuba <katsuba.igor@gmail.ru>", "Roman Sedov <79601794011@ya.ru>"],
+  "homepage": "https://github.com/platacard/mexo",
+  "repository": "https://github.com/platacard/mexo",
+  "license": "Apache-2.0",
   "contributors": [
-    "Igor Katsuba <katsuba.igor@gmail.ru>",
-    "Roman Sedov <79601794011@ya.ru>"
+    "Igor Katsuba <igor@katsuba.dev>"
   ],
-  "repository": "https://github.com/taiga-family/microzord",
-  "homepage": "https://taiga-family.github.io/microzord",
   "scripts": {
+    "affected": "nx affected",
+    "affected:apps": "nx affected:apps",
+    "affected:build": "nx affected:build",
+    "affected:dep-graph": "nx affected:dep-graph",
+    "affected:e2e": "nx affected:e2e",
+    "affected:libs": "nx affected:libs",
+    "affected:lint": "nx affected:lint",
+    "affected:test": "nx affected:test",
+    "build": "nx affected --target build --configuration production",
+    "dep-graph": "nx dep-graph",
+    "e2e": "nx e2e",
+    "format": "nx format:write",
+    "format:check": "nx format:check",
+    "format:write": "nx format:write",
+    "help": "nx help",
+    "lint": "nx affected --target lint",
     "ng": "nx",
     "nx": "nx",
-    "start": "nx run demo:serve",
-    "build": "nx affected --target build --configuration production",
+    "prettier": "prettier --write '**/*.{js,ts,html,md,less,json}'",
     "release": "nx run-many --target release --all",
     "release:package": "nx build ${npm_config_package} --configuration production && npm run sync-readmes ${npm_config_package} && nx semrel ${npm_config_package}",
+    "start": "nx run demo:serve",
     "sync-readmes": "node scripts/sync-readmes",
     "test": "nx affected --target test",
-    "lint": "nx affected --target lint",
-    "prettier": "prettier --write '**/*.{js,ts,html,md,less,json}'",
-    "e2e": "nx e2e",
-    "affected:apps": "nx affected:apps",
-    "affected:libs": "nx affected:libs",
-    "affected:build": "nx affected:build",
-    "affected:e2e": "nx affected:e2e",
-    "affected:test": "nx affected:test",
-    "affected:lint": "nx affected:lint",
-    "affected:dep-graph": "nx affected:dep-graph",
-    "affected": "nx affected",
-    "format": "nx format:write",
-    "format:write": "nx format:write",
-    "format:check": "nx format:check",
     "update": "nx migrate latest",
-    "workspace-generator": "nx workspace-generator",
-    "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "workspace-generator": "nx workspace-generator"
   },
-  "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,html,md,less,scss,json}": [
+      "npm run format:write"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
   "dependencies": {
     "@angular-architects/module-federation": "17.0.8",
     "@angular/animations": "17.3.9",
@@ -57,15 +69,8 @@
     "@angular/platform-browser": "17.3.9",
     "@angular/platform-browser-dynamic": "17.3.9",
     "@angular/router": "17.3.9",
-    "@ng-web-apis/common": "3.0.6",
     "@nx/angular": "19.0.4",
     "@swc/helpers": "0.5.11",
-    "@taiga-ui/addon-doc": "3.79.0",
-    "@taiga-ui/addon-mobile": "3.79.0",
-    "@taiga-ui/cdk": "3.79.0",
-    "@taiga-ui/core": "3.79.0",
-    "@taiga-ui/icons": "3.79.0",
-    "@taiga-ui/kit": "3.79.0",
     "core-js": "3.37.1",
     "ngx-highlightjs": "10.0.0",
     "react": "18.3.1",
@@ -90,9 +95,11 @@
     "@babel/preset-react": "7.24.1",
     "@babel/preset-typescript": "7.24.1",
     "@commitlint/config-conventional": "19.2.2",
+    "@ianvs/prettier-plugin-sort-imports": "^4.2.1",
     "@ng-builders/semrel": "1.5.0",
     "@ngneat/spectator": "18.0.2",
     "@nx/cypress": "19.0.4",
+    "@nx/eslint": "19.0.4",
     "@nx/eslint-plugin": "19.0.4",
     "@nx/jest": "19.0.4",
     "@nx/js": "19.0.4",
@@ -109,7 +116,6 @@
     "@swc/cli": "0.3.12",
     "@swc/core": "1.5.7",
     "@testing-library/react": "15.0.7",
-    "@tinkoff/linters": "1.52.1",
     "@types/jest": "29.5.12",
     "@types/node": "20.12.12",
     "@types/react": "18.3.2",
@@ -140,7 +146,8 @@
     "nx": "19.0.4",
     "postcss": "8.4.38",
     "postcss-preset-env": "9.5.13",
-    "prettier": "3.2.5",
+    "prettier": "^3.2.5",
+    "prettier-plugin-packagejson": "^2.5.0",
     "react-refresh": "0.14.2",
     "style-loader": "4.0.0",
     "stylus": "0.63.0",
@@ -150,20 +157,13 @@
     "tsconfig-paths": "4.2.0",
     "typescript": "5.2.2",
     "url-loader": "4.1.1",
-    "webpack": "5.91.0",
-    "@nx/eslint": "19.0.4"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,html,md,less,scss,json}": ["npm run format:write"],
-    "*.{js,jsx,ts,tsx}": ["eslint --fix"]
+    "webpack": "5.91.0"
   },
   "engines": {
-    "node": "18.x.x"
-  }
+    "node": ">= 18.x.x"
+  },
+  "authors": [
+    "Igor Katsuba <katsuba.igor@gmail.ru>",
+    "Roman Sedov <79601794011@ya.ru>"
+  ]
 }

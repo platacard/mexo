@@ -1,9 +1,9 @@
 const fs = require('fs');
-const {argv} = require('process');
+const { argv } = require('process');
 
-const package = argv.length >= 2 ? argv[2] : '';
+const packageName = argv.length >= 2 ? argv[2] : '';
 
-if (!package) {
+if (!packageName) {
   throw 'Название пакета не передано в sync-readmes';
 }
 
@@ -15,7 +15,7 @@ function copyExtraFiles() {
   if (!fs.existsSync(README_PATH)) {
     throw new Error('README.md does not exist');
   } else {
-    copyReadmeIntoLibFolder(README_PATH, package);
+    copyReadmeIntoLibFolder(README_PATH, packageName);
   }
 }
 

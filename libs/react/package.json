@@ -1,7 +1,5 @@
 {
-  "name": "@microzord/react",
+  "name": "@mexo/react",
   "version": "0.0.0-development",
-  "dependencies": {
-    "@microzord/core": "2.0.1"
-  }
+  "dependencies": {}
 }

@@ -1,6 +1,7 @@
-import {Observable, of} from 'rxjs';
-import {loadedEntityRegistry} from '../registry';
-import {EntityConstructor} from '../models/entity';
+import { Observable, of } from 'rxjs';
+
+import { EntityConstructor } from '../models/entity';
+import { loadedEntityRegistry } from '../registry';
 
 export function getEntity<T, K>(
   entityName: string,

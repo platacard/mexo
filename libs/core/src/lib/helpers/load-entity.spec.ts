@@ -1,8 +1,10 @@
-import {ApplicationMock} from '@microzord/core/testing';
-import {registerEntity} from './register-entity';
-import {loadEntity} from './load-entity';
-import {of} from 'rxjs';
-import {EntityRegistrationOptions} from '../models/registration-options';
+import { of } from 'rxjs';
+
+import { ApplicationMock } from '@mexo/core/testing';
+
+import { EntityRegistrationOptions } from '../models/registration-options';
+import { loadEntity } from './load-entity';
+import { registerEntity } from './register-entity';
 
 describe('loadEntity', () => {
   beforeEach(async () => {
@@ -38,16 +40,22 @@ describe('loadEntity', () => {
 
     await loadEntity('appMock1').toPromise();
 
-    expect(await loadEntity('appMock1').toPromise()).toStrictEqual(ApplicationMock);
-    expect(await loadEntity('appMock3').toPromise()).toStrictEqual(ApplicationMock);
-    expect(await loadEntity('appMock4').toPromise()).toStrictEqual(ApplicationMock);
+    expect(await loadEntity('appMock1').toPromise()).toStrictEqual(
+      ApplicationMock,
+    );
+    expect(await loadEntity('appMock3').toPromise()).toStrictEqual(
+      ApplicationMock,
+    );
+    expect(await loadEntity('appMock4').toPromise()).toStrictEqual(
+      ApplicationMock,
+    );
   });
 
   it('should throw an error when trying to load an unregistered entity', async () => {
     expect.assertions(1);
 
     await expect(loadEntity('unregistered').toPromise()).rejects.toEqual(
-      `Microzord entity "unregistered" has not been registered. Check the spelling or register an app.`,
+      `Mexo entity "unregistered" has not been registered. Check the spelling or register an app.`,
     );
   });
 
@@ -55,7 +63,7 @@ describe('loadEntity', () => {
     expect.assertions(1);
 
     await expect(loadEntity('appMock2').toPromise()).rejects.toEqual(
-      `Microzord entity "appMock2" is registered but it has no "load" function. Please, provide it`,
+      `Mexo entity "appMock2" is registered but it has no "load" function. Please, provide it`,
     );
   });
 });

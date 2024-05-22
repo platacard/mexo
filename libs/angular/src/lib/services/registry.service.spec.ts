@@ -1,7 +1,7 @@
-import {TestBed} from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
 
-import {RegistryService} from './registry.service';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { RegistryService } from './registry.service';
 
 describe('RegistryService', () => {
   let service: RegistryService;

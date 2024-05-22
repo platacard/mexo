@@ -1,5 +1,6 @@
-import {NEVER} from 'rxjs';
-import {finalize, startWith, switchMap} from 'rxjs/operators';
+import { finalize, startWith, switchMap } from 'rxjs/operators';
+
+import { NEVER } from 'rxjs';
 
 export const complete = <T>(fn: (value: T) => void) =>
   switchMap((value: T) =>

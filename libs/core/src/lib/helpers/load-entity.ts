@@ -1,15 +1,17 @@
-import {defer, isObservable, Observable, of} from 'rxjs';
-import {switchMap, tap} from 'rxjs/operators';
-import {entityOptionsRegistry, loadedEntityRegistry} from '../registry';
-import {EntityConstructor} from '../models/entity';
-import {EntityRegistrationOptions} from '../models/registration-options';
-import {getEntity} from './get-entity';
+import { switchMap, tap } from 'rxjs/operators';
+
+import { defer, isObservable, Observable, of } from 'rxjs';
+
+import { EntityConstructor } from '../models/entity';
+import { EntityRegistrationOptions } from '../models/registration-options';
+import { entityOptionsRegistry, loadedEntityRegistry } from '../registry';
+import { getEntity } from './get-entity';
 
 export function loadEntity<T, K>(
   entityName: string,
 ): Observable<EntityConstructor<T, K>> {
   return getEntity<T, K>(entityName).pipe(
-    switchMap(entity =>
+    switchMap((entity) =>
       entity
         ? of(entity)
         : defer<Observable<EntityConstructor<T, K>>>(() => {
@@ -19,11 +21,11 @@ export function loadEntity<T, K>(
               >(entityName);
 
             if (!options) {
-              throw `Microzord entity "${entityName}" has not been registered. Check the spelling or register an app.`;
+              throw `Mexo entity "${entityName}" has not been registered. Check the spelling or register an app.`;
             }
 
             if (!options.load) {
-              throw `Microzord entity "${entityName}" is registered but it has no "load" function. Please, provide it`;
+              throw `Mexo entity "${entityName}" is registered but it has no "load" function. Please, provide it`;
             }
 
             const result = options.load();
@@ -35,6 +37,6 @@ export function loadEntity<T, K>(
               : of(result as EntityConstructor<T, K>);
           }),
     ),
-    tap(entity => loadedEntityRegistry.set(entityName, entity)),
+    tap((entity) => loadedEntityRegistry.set(entityName, entity)),
   );
 }

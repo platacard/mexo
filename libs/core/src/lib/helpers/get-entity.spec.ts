@@ -1,7 +1,8 @@
-import {ApplicationMock} from '@microzord/core/testing';
-import {loadEntity} from './load-entity';
-import {registerEntity} from './register-entity';
-import {getEntity} from './get-entity';
+import { ApplicationMock } from '@mexo/core/testing';
+
+import { getEntity } from './get-entity';
+import { loadEntity } from './load-entity';
+import { registerEntity } from './register-entity';
 
 describe('getEntity', () => {
   beforeEach(async () => {

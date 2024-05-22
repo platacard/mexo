@@ -1,9 +1,9 @@
-import {MicrozordEvent, MicrozordMessageEvent, MicrozordNavigationEvent} from './events';
-import {MicrozordLifecycleEvent} from './lifecycle';
-import {EntityConstructor} from './entity';
-import {DefaultPropsType} from './default-props-type';
+import { DefaultPropsType } from './default-props-type';
+import { EntityConstructor } from './entity';
+import { MexoEvent, MexoMessageEvent, MexoNavigationEvent } from './events';
+import { MexoLifecycleEvent } from './lifecycle';
 
-export type Listener<T extends MicrozordEvent> = (event: T) => void;
+export type Listener<T extends MexoEvent> = (event: T) => void;
 
 export abstract class Application<
   T extends DefaultPropsType = DefaultPropsType,
@@ -12,13 +12,16 @@ export abstract class Application<
   isDestroyed = true;
   container: Element | string = '';
 
-  protected readonly hook = new Set<Listener<MicrozordLifecycleEvent>>();
-  protected readonly message = new Set<Listener<MicrozordMessageEvent>>();
-  protected readonly navigationEvent = new Set<Listener<MicrozordNavigationEvent>>();
+  protected readonly hook = new Set<Listener<MexoLifecycleEvent>>();
+  protected readonly message = new Set<Listener<MexoMessageEvent>>();
+  protected readonly navigationEvent = new Set<Listener<MexoNavigationEvent>>();
 
-  constructor(public readonly name: string, public props?: T) {}
+  constructor(
+    public readonly name: string,
+    public props?: T,
+  ) {}
 
-  onMessage(fn: Listener<MicrozordMessageEvent>): () => void {
+  onMessage(fn: Listener<MexoMessageEvent>): () => void {
     this.message.add(fn);
 
     return () => {
@@ -26,11 +29,11 @@ export abstract class Application<
     };
   }
 
-  emitMessage(event: MicrozordMessageEvent) {
+  emitMessage(event: MexoMessageEvent) {
     this.callListeners(this.message, event);
   }
 
-  onRouteChange(fn: Listener<MicrozordNavigationEvent>): () => void {
+  onRouteChange(fn: Listener<MexoNavigationEvent>): () => void {
     this.navigationEvent.add(fn);
 
     return () => {
@@ -38,11 +41,11 @@ export abstract class Application<
     };
   }
 
-  emitRouteChange(event: MicrozordNavigationEvent) {
+  emitRouteChange(event: MexoNavigationEvent) {
     this.callListeners(this.navigationEvent, event);
   }
 
-  onHook(fn: Listener<MicrozordLifecycleEvent>): () => void {
+  onHook(fn: Listener<MexoLifecycleEvent>): () => void {
     this.hook.add(fn);
 
     return () => {
@@ -50,12 +53,12 @@ export abstract class Application<
     };
   }
 
-  emitHook(event: MicrozordLifecycleEvent) {
+  emitHook(event: MexoLifecycleEvent) {
     this.callListeners(this.hook, event);
   }
 
   destroy() {
-    this.emitHook(MicrozordLifecycleEvent.destroyed());
+    this.emitHook(MexoLifecycleEvent.destroyed());
 
     this.hook.clear(); // todo: в этот поток перед комплитом нужен евент дестроя
     this.message.clear();
@@ -70,18 +73,18 @@ export abstract class Application<
     this.container = container;
   }
 
-  abstract send(msg: string | MicrozordMessageEvent): Promise<void>;
+  abstract send(msg: string | MexoMessageEvent): Promise<void>;
 
   // todo: шо за пропс? Надо придумать
   abstract navigate(url: string, props?: unknown): Promise<void>;
 
-  protected callListeners<K extends MicrozordEvent>(
+  protected callListeners<K extends MexoEvent>(
     listeners: Set<Listener<K>>,
     event: K,
   ) {
     event.target = this;
 
-    [...listeners].forEach(fn => {
+    [...listeners].forEach((fn) => {
       fn(event);
     });
   }

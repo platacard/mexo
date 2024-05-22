@@ -1,4 +1,5 @@
-import {createApp} from '@microzord/react';
+import { createApp } from '@mexo/react';
+
 import App from './app';
 
 const remoteReactApp = createApp('remote-react-app', <App />);
