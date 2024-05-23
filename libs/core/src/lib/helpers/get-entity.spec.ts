@@ -8,18 +8,18 @@ describe('getEntity', () => {
   beforeEach(async () => {
     registerEntity({
       name: 'appMock',
-      load() {
+      async load() {
         return ApplicationMock;
       },
     });
 
-    await loadEntity('appMock').toPromise();
+    await loadEntity('appMock');
   });
 
   it('should return an app constructor', async () => {
     expect.assertions(1);
 
-    const appConstructor = await getEntity('appMock').toPromise();
+    const appConstructor = await getEntity('appMock');
 
     expect(appConstructor).toStrictEqual(ApplicationMock);
   });

@@ -10,7 +10,7 @@ describe('loadEntity', () => {
   beforeEach(async () => {
     registerEntity({
       name: 'appMock1',
-      load() {
+      async load() {
         return ApplicationMock;
       },
     });
@@ -22,7 +22,7 @@ describe('loadEntity', () => {
 
     registerEntity({
       name: 'appMock3',
-      load() {
+      async load() {
         return of(ApplicationMock);
       },
     });
@@ -38,23 +38,17 @@ describe('loadEntity', () => {
   it('should load an entity constructor', async () => {
     expect.assertions(3);
 
-    await loadEntity('appMock1').toPromise();
+    await loadEntity('appMock1');
 
-    expect(await loadEntity('appMock1').toPromise()).toStrictEqual(
-      ApplicationMock,
-    );
-    expect(await loadEntity('appMock3').toPromise()).toStrictEqual(
-      ApplicationMock,
-    );
-    expect(await loadEntity('appMock4').toPromise()).toStrictEqual(
-      ApplicationMock,
-    );
+    expect(await loadEntity('appMock1')).toStrictEqual(ApplicationMock);
+    expect(await loadEntity('appMock3')).toStrictEqual(ApplicationMock);
+    expect(await loadEntity('appMock4')).toStrictEqual(ApplicationMock);
   });
 
   it('should throw an error when trying to load an unregistered entity', async () => {
     expect.assertions(1);
 
-    await expect(loadEntity('unregistered').toPromise()).rejects.toEqual(
+    await expect(loadEntity('unregistered')).rejects.toEqual(
       `Mexo entity "unregistered" has not been registered. Check the spelling or register an app.`,
     );
   });
@@ -62,7 +56,7 @@ describe('loadEntity', () => {
   it('should throw an error when options does not have the load function', async () => {
     expect.assertions(1);
 
-    await expect(loadEntity('appMock2').toPromise()).rejects.toEqual(
+    await expect(loadEntity('appMock2')).rejects.toEqual(
       `Mexo entity "appMock2" is registered but it has no "load" function. Please, provide it`,
     );
   });

@@ -15,7 +15,7 @@ import {
   OnDestroy,
   Output,
 } from '@angular/core';
-import { NEVER, Observable, of, Subject } from 'rxjs';
+import { defer, NEVER, Observable, of, Subject } from 'rxjs';
 
 import {
   Application,
@@ -63,7 +63,7 @@ export class MexoAppDirective implements OnDestroy {
       }),
       switchMap((name) =>
         name
-          ? bootstrapApp(name, this.elementRef.nativeElement).pipe(
+          ? defer(() => bootstrapApp(name, this.elementRef.nativeElement)).pipe(
               catchError((error) => this.handleError(error)),
             )
           : of(null),

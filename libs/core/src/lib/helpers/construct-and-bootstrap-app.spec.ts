@@ -19,7 +19,7 @@ describe('constructAndBootstrapApp', () => {
   beforeEach(async () => {
     options = {
       name: 'appMock',
-      load() {
+      async load() {
         return ApplicationMock;
       },
     };
@@ -31,13 +31,13 @@ describe('constructAndBootstrapApp', () => {
 
   describe('An app is already loaded', () => {
     beforeEach(async () => {
-      await loadApp('appMock').toPromise();
+      await loadApp('appMock');
     });
 
     it("shouldn't load an app again", async () => {
       expect.assertions(1);
 
-      await constructAndBootstrapApp('appMock', '#container').toPromise();
+      await constructAndBootstrapApp('appMock', '#container');
 
       expect(loadFn).toHaveBeenCalledTimes(1);
     });
@@ -45,10 +45,7 @@ describe('constructAndBootstrapApp', () => {
     it('should bootstrap an app', async () => {
       expect.assertions(1);
 
-      const app = await constructAndBootstrapApp(
-        'appMock',
-        '#container',
-      ).toPromise();
+      const app = await constructAndBootstrapApp('appMock', '#container');
 
       expect(app).toBeInstanceOf(ApplicationMock);
     });
@@ -58,7 +55,7 @@ describe('constructAndBootstrapApp', () => {
     it('should load an app', async () => {
       expect.assertions(1);
 
-      await constructAndBootstrapApp('appMock', '#container').toPromise();
+      await constructAndBootstrapApp('appMock', '#container');
 
       expect(loadFn).toHaveBeenCalledTimes(1);
     });
@@ -66,10 +63,7 @@ describe('constructAndBootstrapApp', () => {
     it('should bootstrap an app', async () => {
       expect.assertions(1);
 
-      const app = await constructAndBootstrapApp(
-        'appMock',
-        '#container',
-      ).toPromise();
+      const app = await constructAndBootstrapApp('appMock', '#container');
 
       expect(app).toBeInstanceOf(Application);
     });

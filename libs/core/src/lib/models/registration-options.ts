@@ -5,7 +5,7 @@ import { DefaultPropsType } from './default-props-type';
 
 export interface EntityRegistrationOptions<T> {
   name: string;
-  load: () => Observable<T> | PromiseLike<T> | T;
+  load: () => PromiseLike<T>;
 }
 
 export interface AppRegistrationOptions<

@@ -8,18 +8,18 @@ describe('getApp', () => {
   beforeEach(async () => {
     registerApp({
       name: 'appMock',
-      load() {
+      async load() {
         return ApplicationMock;
       },
     });
 
-    await loadApp('appMock').toPromise();
+    await loadApp('appMock');
   });
 
   it('should return an app constructor', async () => {
     expect.assertions(1);
 
-    const appConstructor = await getApp('appMock').toPromise();
+    const appConstructor = await getApp('appMock');
 
     expect(appConstructor).toStrictEqual(ApplicationMock);
   });

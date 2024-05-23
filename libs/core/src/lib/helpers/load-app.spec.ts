@@ -7,7 +7,7 @@ describe('loadApp', () => {
   beforeEach(async () => {
     registerApp({
       name: 'appMock1',
-      load() {
+      async load() {
         return ApplicationMock;
       },
     });
@@ -16,10 +16,8 @@ describe('loadApp', () => {
   it('should load an app constructor', async () => {
     expect.assertions(1);
 
-    await loadApp('appMock1').toPromise();
+    await loadApp('appMock1');
 
-    expect(await loadApp('appMock1').toPromise()).toStrictEqual(
-      ApplicationMock,
-    );
+    expect(await loadApp('appMock1')).toStrictEqual(ApplicationMock);
   });
 });

@@ -1,25 +1,19 @@
-import { switchMap, tap } from 'rxjs/operators';
-
-import { Observable, of } from 'rxjs';
-
 import { Application, ApplicationConstructor } from '../models/application';
 import { DefaultPropsType } from '../models/default-props-type';
 import { loadedEntityRegistry } from '../registry';
 import { getApp } from './get-app';
 import { loadEntity } from './load-entity';
 
-export function loadApp<T extends DefaultPropsType = DefaultPropsType>(
+export async function loadApp<T extends DefaultPropsType = DefaultPropsType>(
   appName: string,
-): Observable<ApplicationConstructor<T>> {
-  return getApp<T>(appName).pipe(
-    switchMap((appConstructor) =>
-      appConstructor
-        ? of(appConstructor).pipe(
-            tap((applicationConstructor) =>
-              loadedEntityRegistry.set(appName, applicationConstructor),
-            ),
-          )
-        : loadEntity<T, Application<T>>(appName),
-    ),
-  );
+): Promise<ApplicationConstructor<T>> {
+  const appConstructor = await getApp<T>(appName);
+
+  if (appConstructor) {
+    loadedEntityRegistry.set(appName, appConstructor);
+
+    return appConstructor;
+  }
+
+  return loadEntity<T, Application<T>>(appName);
 }

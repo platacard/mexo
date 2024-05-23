@@ -1,42 +1,35 @@
-import { switchMap, tap } from 'rxjs/operators';
-
-import { defer, isObservable, Observable, of } from 'rxjs';
-
 import { EntityConstructor } from '../models/entity';
 import { EntityRegistrationOptions } from '../models/registration-options';
 import { entityOptionsRegistry, loadedEntityRegistry } from '../registry';
 import { getEntity } from './get-entity';
 
-export function loadEntity<T, K>(
+export async function loadEntity<T, K>(
   entityName: string,
-): Observable<EntityConstructor<T, K>> {
-  return getEntity<T, K>(entityName).pipe(
-    switchMap((entity) =>
-      entity
-        ? of(entity)
-        : defer<Observable<EntityConstructor<T, K>>>(() => {
-            const options =
-              entityOptionsRegistry.get<
-                EntityRegistrationOptions<EntityConstructor<T, K>>
-              >(entityName);
+): Promise<EntityConstructor<T, K>> {
+  const entity = await getEntity<T, K>(entityName);
 
-            if (!options) {
-              throw `Mexo entity "${entityName}" has not been registered. Check the spelling or register an app.`;
-            }
+  if (entity) {
+    return entity;
+  }
 
-            if (!options.load) {
-              throw `Mexo entity "${entityName}" is registered but it has no "load" function. Please, provide it`;
-            }
+  const options =
+    entityOptionsRegistry.get<
+      EntityRegistrationOptions<EntityConstructor<T, K>>
+    >(entityName);
 
-            const result = options.load();
+  if (!options) {
+    throw `Mexo entity "${entityName}" has not been registered. Check the spelling or register an app.`;
+  }
 
-            return result &&
-              (isObservable(result) ||
-                ('then' in result && typeof result['then'] === 'function'))
-              ? defer(() => result)
-              : of(result as EntityConstructor<T, K>);
-          }),
-    ),
-    tap((entity) => loadedEntityRegistry.set(entityName, entity)),
-  );
+  if (!options.load) {
+    throw `Mexo entity "${entityName}" is registered but it has no "load" function. Please, provide it`;
+  }
+
+  const result = await options.load();
+
+  if (result) {
+    loadedEntityRegistry.set(entityName, result);
+  }
+
+  return result;
 }

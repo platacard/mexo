@@ -7,7 +7,7 @@ describe('registerApp', () => {
   beforeEach(async () => {
     registerApp({
       name: 'appMock',
-      load() {
+      async load() {
         return ApplicationMock;
       },
     });

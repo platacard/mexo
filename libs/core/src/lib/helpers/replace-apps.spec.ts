@@ -8,14 +8,14 @@ describe('replaceApps', () => {
   beforeEach(async () => {
     registerApp({
       name: 'appMock1',
-      load() {
+      async load() {
         return ApplicationMock;
       },
     });
 
     registerApp({
       name: 'appMock2',
-      load() {
+      async load() {
         return ApplicationMock;
       },
     });
@@ -24,12 +24,12 @@ describe('replaceApps', () => {
   it('should destroy the appMock1 app', async () => {
     expect.assertions(1);
 
-    const app1 = await constructAndBootstrapApp('appMock1', '#').toPromise();
+    const app1 = await constructAndBootstrapApp('appMock1', '#');
     if (!app1) {
       throw new Error('No app found');
     }
 
-    await replaceApps(app1, 'appMock2').toPromise();
+    await replaceApps(app1, 'appMock2');
 
     expect(app1?.isDestroyed).toStrictEqual(true);
   });
@@ -37,11 +37,11 @@ describe('replaceApps', () => {
   it('should bootstrap the appMock2 app', async () => {
     expect.assertions(1);
 
-    const app1 = await constructAndBootstrapApp('appMock1', '#').toPromise();
+    const app1 = await constructAndBootstrapApp('appMock1', '#');
     if (!app1) {
       throw new Error('No app found');
     }
-    const app2 = await replaceApps(app1, 'appMock2').toPromise();
+    const app2 = await replaceApps(app1, 'appMock2');
 
     expect(app2?.isBootstrapped).toStrictEqual(true);
   });

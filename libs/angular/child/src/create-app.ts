@@ -24,14 +24,14 @@ export function createApp<
     T extends Record<string, unknown> = Props,
   > extends Application<T> {
     private router: Router | null = null;
-    private ngModule: ApplicationRef | null = null;
+    private appRef: ApplicationRef | null = null;
 
     override destroy() {
       super.destroy();
 
-      if (this.ngModule) {
-        this.ngModule.destroy();
-        this.ngModule = null;
+      if (this.appRef) {
+        this.appRef.destroy();
+        this.appRef = null;
       }
 
       this.emitHook(MexoLifecycleEvent.destroyed());
@@ -54,9 +54,9 @@ export function createApp<
 
       containerElement.appendChild(rootElement);
 
-      this.ngModule = await bootstrapFn(props);
+      this.appRef = await bootstrapFn(props);
 
-      this.router = this.ngModule.injector.get(Router, null, {
+      this.router = this.appRef.injector.get(Router, null, {
         optional: true,
       });
 
