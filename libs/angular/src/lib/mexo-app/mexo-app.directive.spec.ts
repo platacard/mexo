@@ -18,7 +18,7 @@ describe('MexoAppDirective', () => {
         apps: [
           {
             name: 'name',
-            load: () => ApplicationMock,
+            load: async () => ApplicationMock,
           },
         ],
       }),

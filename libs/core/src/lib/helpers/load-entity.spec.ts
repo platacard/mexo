@@ -1,5 +1,3 @@
-import { of } from 'rxjs';
-
 import { ApplicationMock } from '@mexo/core/testing';
 
 import { EntityRegistrationOptions } from '../models/registration-options';
@@ -23,7 +21,7 @@ describe('loadEntity', () => {
     registerEntity({
       name: 'appMock3',
       async load() {
-        return of(ApplicationMock);
+        return ApplicationMock;
       },
     });
 

@@ -1,5 +1,3 @@
-import { Observable } from 'rxjs';
-
 import { ApplicationConstructor } from './application';
 import { DefaultPropsType } from './default-props-type';
 
