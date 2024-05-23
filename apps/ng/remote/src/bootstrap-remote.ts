@@ -1,3 +1,5 @@
+import 'zone.js';
+
 import { bootstrapApplication } from '@angular/platform-browser';
 
 import { createApp } from '@mexo/angular/remote';

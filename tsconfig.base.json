@@ -21,8 +21,7 @@
       "@mexo/core": ["libs/core/src/index.ts"],
       "@mexo/core/testing": ["libs/core/testing/src/index.ts"],
       "@mexo/react": ["libs/react/src/index.ts"],
-      "@mexo/react/*": ["libs/react/*"],
-      "ng-remote/App": ["apps/ng/remote/src/bootstrap-remote.ts"]
+      "@mexo/react/*": ["libs/react/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

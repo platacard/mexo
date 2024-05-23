@@ -1,1 +1,1 @@
-export const _b = 2;
+export * from './src/provider';
