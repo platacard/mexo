@@ -2,19 +2,15 @@ import { Injectable } from '@angular/core';
 
 import { AppRegistrationOptions, registerEntity } from '@mexo/core';
 
-import { NgModuleRegistrationOptions } from '../types/ng-module';
-
 @Injectable({
   providedIn: 'root',
 })
 export class RegistryService {
-  registerMany(
-    apps: ReadonlyArray<AppRegistrationOptions | NgModuleRegistrationOptions>,
-  ) {
+  registerMany(apps: ReadonlyArray<AppRegistrationOptions>) {
     apps.forEach((app) => this.register(app));
   }
 
-  register(options: AppRegistrationOptions | NgModuleRegistrationOptions) {
+  register(options: AppRegistrationOptions) {
     registerEntity(options);
   }
 }

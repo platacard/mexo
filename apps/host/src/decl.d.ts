@@ -1,7 +1,5 @@
 declare module 'remote/remote-module' {
-  export const RemoteModule: import('@angular/core').Type<
-    import('@mexo/angular').MexoNgModule
-  >;
+  export const RemoteModule: import('@angular/core').Type<any>;
 }
 declare module 'remote/remote-app-bootstrap' {
   export const remoteAppBootstrap: import('@mexo/core').ApplicationConstructor<
