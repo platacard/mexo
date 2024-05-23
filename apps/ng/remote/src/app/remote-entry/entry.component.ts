@@ -1,12 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { Component, signal } from '@angular/core';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, NxWelcomeComponent],
+  imports: [CommonModule],
   selector: 'app-ng-remote-entry',
-  template: `<app-nx-welcome></app-nx-welcome>`,
+  template: `
+    <h1>Ng Remote Entry</h1>
+    <div>
+      {{ count() }}
+
+      <button (click)="count.set(count() + 1)">Increment</button>
+    </div>
+  `,
 })
-export class RemoteEntryComponent {}
+export class RemoteEntryComponent {
+  count = signal(0);
+}

@@ -1,9 +1,4 @@
-import {
-  CompilerOptions,
-  InjectFlags,
-  InjectionToken,
-  NgModuleRef,
-} from '@angular/core';
+import { ApplicationRef, CompilerOptions, InjectionToken } from '@angular/core';
 import { Router } from '@angular/router';
 
 import {
@@ -21,7 +16,7 @@ export function createApp<
   TModule,
   Props extends Record<string, unknown> = Record<string, unknown>,
 >(
-  bootstrapFn: (props?: CompilerOptions) => Promise<NgModuleRef<TModule>>,
+  bootstrapFn: (props?: CompilerOptions) => Promise<ApplicationRef>,
   rootSelector: string,
 ): ApplicationConstructor {
   // todo: не хватает имплементации хуков, сообщений и навигации
@@ -29,9 +24,9 @@ export function createApp<
     T extends Record<string, unknown> = Props,
   > extends Application<T> {
     private router: Router | null = null;
-    private ngModule: NgModuleRef<TModule> | null = null;
+    private ngModule: ApplicationRef | null = null;
 
-    destroy() {
+    override destroy() {
       super.destroy();
 
       if (this.ngModule) {
@@ -42,7 +37,10 @@ export function createApp<
       this.emitHook(MexoLifecycleEvent.destroyed());
     }
 
-    async bootstrap(container: string | Element, props?: T): Promise<void> {
+    override async bootstrap(
+      container: string | Element,
+      props?: T,
+    ): Promise<void> {
       const containerElement =
         typeof container === 'string'
           ? document.querySelector(container)
@@ -57,11 +55,10 @@ export function createApp<
       containerElement.appendChild(rootElement);
 
       this.ngModule = await bootstrapFn(props);
-      this.router = this.ngModule.injector.get(
-        Router,
-        null,
-        InjectFlags.Optional,
-      );
+
+      this.router = this.ngModule.injector.get(Router, null, {
+        optional: true,
+      });
 
       await super.bootstrap(container, props);
 

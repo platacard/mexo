@@ -1,5 +1,17 @@
-<ul class="remote-menu">
-  <li><a routerLink="/">Home</a></li>
-  <li><a routerLink="ng-remote">NgRemote</a></li>
-</ul>
-<router-outlet></router-outlet>
+<h1>Host App</h1>
+
+<div class="embed-container">
+  <h2>
+    Apps (mexoApp)
+    <button (click)="toggleApps()">toggle apps</button>
+  </h2>
+
+  @for (app of apps$ | async; track app) {
+    <div
+      class="embedded"
+      [mexoApp]="app"
+      (application)="appLoaded($event)"
+      (hook)="appHook($event)"
+    ></div>
+  }
+</div>
