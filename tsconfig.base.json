@@ -20,7 +20,10 @@
       "@mexo/angular/*": ["libs/angular/*"],
       "@mexo/core": ["libs/core/src/index.ts"],
       "@mexo/core/testing": ["libs/core/testing/src/index.ts"],
-      "@mexo/react": ["libs/react/src/index.ts"]
+      "@mexo/react": ["libs/react/src/index.ts"],
+      "ng-remote/Routes": [
+        "apps/ng/remote/src/app/remote-entry/entry.routes.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

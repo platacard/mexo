@@ -41,3 +41,7 @@ Thumbs.db
 
 .angular
 .nx
+
+# Next.js
+.next
+out

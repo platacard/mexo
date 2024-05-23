@@ -1,0 +1,9 @@
+{
+  "name": "react-host-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/react/host-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["react-host"],
+  "// targets": "to see all targets run: nx show project react-host-e2e --web",
+  "targets": {}
+}

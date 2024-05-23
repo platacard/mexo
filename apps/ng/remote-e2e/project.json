@@ -1,0 +1,9 @@
+{
+  "name": "ng-remote-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/ng/remote-e2e/src",
+  "implicitDependencies": ["ng-remote"],
+  "// targets": "to see all targets run: nx show project ng-remote-e2e --web",
+  "targets": {}
+}

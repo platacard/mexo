@@ -1,0 +1,9 @@
+{
+  "name": "react-remote-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/react/remote-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["react-remote"],
+  "// targets": "to see all targets run: nx show project react-remote-e2e --web",
+  "targets": {}
+}
