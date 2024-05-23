@@ -5,16 +5,18 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nx/rollup:rollup",
+      "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/react",
         "tsConfig": "libs/react/tsconfig.lib.json",
         "project": "libs/react/package.json",
-        "entryFile": "libs/react/src/index.ts",
-        "external": ["react", "react-dom"],
-        "babelConfig": "@nx/react/plugins/bundle-babel",
-        "rollupConfig": "@nx/react/plugins/bundle-rollup",
+        "main": "libs/react/src/index.ts",
+        "additionalEntryPoints": [
+          "libs/react/remote/index.ts",
+          "libs/react/host/index.ts"
+        ],
+        "generateExportsField": true,
         "assets": [
           {
             "glob": "README.md",

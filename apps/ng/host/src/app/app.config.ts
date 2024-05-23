@@ -1,7 +1,7 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { MexoHostModule } from '@mexo/angular';
+import { MexoHostModule } from '@mexo/angular/host';
 
 import { appRoutes } from './app.routes';
 

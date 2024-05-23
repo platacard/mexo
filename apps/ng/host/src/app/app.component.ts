@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
-import { MexoHostModule } from '@mexo/angular';
+import { MexoHostModule } from '@mexo/angular/host';
 import { Application, MexoLifecycleEvent } from '@mexo/core';
 
 @Component({

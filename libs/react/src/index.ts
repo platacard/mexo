@@ -1,1 +1,1 @@
-export * from './lib/createApp';
+export const _a = 1;

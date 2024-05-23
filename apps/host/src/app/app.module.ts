@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
-import { MexoHostModule } from '@mexo/angular';
+import { MexoHostModule } from '@mexo/angular/host';
 
 import { AppComponent } from './app.component';
 
@@ -16,13 +16,6 @@ import { AppComponent } from './app.component';
     RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
     HttpClientModule,
     MexoHostModule.register({
-      modules: [
-        {
-          name: 'remote-module',
-          load: () =>
-            import('remote/remote-module').then((m) => m.RemoteModule),
-        },
-      ],
       apps: [
         {
           name: 'remote-app',
