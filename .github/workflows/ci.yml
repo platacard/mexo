@@ -33,3 +33,5 @@ jobs:
       - run: git config --global user.email "igor@katsuba.dev"
       - run: git config --global user.name "IKatsuba"
       - run: npx nx release --skip-publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
