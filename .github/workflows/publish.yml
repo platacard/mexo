@@ -33,6 +33,9 @@ jobs:
         run: npx nx report
         shell: bash
 
+      - run: git config --global user.email "igor@katsuba.dev"
+      - run: git config --global user.name "IKatsuba"
+
       - name: Publish packages
         run: npx nx release publish
         shell: bash

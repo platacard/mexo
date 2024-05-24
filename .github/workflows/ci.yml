@@ -32,4 +32,6 @@ jobs:
       # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
       # - run: npx nx-cloud record -- echo Hello World
       - run: npx nx affected -t lint test build
+      - run: git config --global user.email "igor@katsuba.dev"
+      - run: git config --global user.name "IKatsuba"
       - run: npx nx release --skip-publish
