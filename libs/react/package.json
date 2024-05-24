@@ -1,5 +1,29 @@
 {
   "name": "@mexo/react",
   "version": "1.0.0",
-  "dependencies": {}
+  "keywords": [
+    "microfrontends",
+    "single-page-application",
+    "framework",
+    "angular",
+    "react",
+    "routing",
+    "microservices"
+  ],
+  "homepage": "https://github.com/platacard/mexo",
+  "repository": "https://github.com/platacard/mexo",
+  "license": "Apache-2.0",
+  "contributors": [
+    "Igor Katsuba <katsuba.igor@gmail.ru>"
+  ],
+  "dependencies": {
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  },
+  "authors": [
+    "Igor Katsuba <katsuba.igor@gmail.ru>"
+  ]
 }
