@@ -90,6 +90,18 @@
       }
     }
   ],
+  "release": {
+    "projects": ["libs/*"],
+    "version": {
+      "conventionalCommits": true
+    },
+    "changelog": {
+      "workspaceChangelog": {
+        "file": false,
+        "createRelease": "github"
+      }
+    }
+  },
   "generators": {
     "@nx/next": {
       "application": {
@@ -102,18 +114,6 @@
       "linter": "eslint",
       "style": "css",
       "unitTestRunner": "jest"
-    }
-  },
-  "release": {
-    "projects": ["libs/*"],
-    "version": {
-      "conventionalCommits": true
-    },
-    "changelog": {
-      "workspaceChangelog": {
-        "file": false,
-        "createRelease": "github"
-      }
     }
   }
 }
