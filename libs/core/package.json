@@ -1,6 +1,6 @@
 {
   "name": "@mexo/core",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "keywords": [
     "microfrontends",
     "single-page-application",
