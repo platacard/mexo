@@ -70,7 +70,6 @@
     "@babel/preset-typescript": "7.24.1",
     "@commitlint/config-conventional": "19.2.2",
     "@ianvs/prettier-plugin-sort-imports": "^4.2.1",
-    "@ng-builders/semrel": "1.5.0",
     "@ngneat/spectator": "18.0.2",
     "@nx/cypress": "19.0.5",
     "@nx/devkit": "19.0.5",

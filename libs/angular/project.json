@@ -35,35 +35,6 @@
         "jestConfig": "libs/angular/jest.config.ts",
         "coverageDirectory": "coverage/angular"
       }
-    },
-    "semrel": {
-      "executor": "@ng-builders/semrel:release",
-      "options": {
-        "npm": {
-          "pkgRoot": "dist/libs/angular"
-        },
-        "branches": [
-          "+([0-9])?(.{+([0-9]),x}).x",
-          "main",
-          "next",
-          "next-major",
-          {
-            "name": "beta",
-            "prerelease": true
-          },
-          {
-            "name": "alpha",
-            "prerelease": true
-          }
-        ]
-      }
-    },
-    "release": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": ["npm run release:package --package=angular"],
-        "parallel": false
-      }
     }
   },
   "tags": []
