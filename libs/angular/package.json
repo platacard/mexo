@@ -7,8 +7,8 @@
     "framework",
     "angular",
     "react",
-    "routing",
-    "microservices"
+    "microservices",
+    "routing"
   ],
   "homepage": "https://github.com/platacard/mexo",
   "repository": "https://github.com/platacard/mexo",

@@ -47,6 +47,12 @@
           "env": "NX_MF_DEV_SERVER_STATIC_REMOTES"
         }
       ]
+    },
+    "nx-release-publish": {
+      "dependsOn": ["build"],
+      "options": {
+        "packageRoot": "dist/libs/{projectName}"
+      }
     }
   },
   "namedInputs": {
