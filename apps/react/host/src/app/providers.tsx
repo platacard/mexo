@@ -18,6 +18,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
             loadRemoteModule('ng-remote', './App').then(
               (m) => m.remoteBootstrap,
             ),
+          preload: true,
         },
       ]}
     >

@@ -4,6 +4,7 @@ import { DefaultPropsType } from './default-props-type';
 export interface EntityRegistrationOptions<T> {
   name: string;
   load: () => PromiseLike<T>;
+  preload?: boolean;
 }
 
 export interface AppRegistrationOptions<

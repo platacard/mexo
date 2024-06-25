@@ -58,4 +58,20 @@ describe('loadEntity', () => {
       `Mexo entity "appMock2" is registered but it has no "load" function. Please, provide it`,
     );
   });
+
+  it('should run the load function only once', async () => {
+    expect.assertions(1);
+
+    const load = jest.fn(() => Promise.resolve(ApplicationMock));
+
+    registerEntity({
+      name: 'appMock5',
+      load,
+    });
+
+    await loadEntity('appMock5');
+    await loadEntity('appMock5');
+
+    expect(load).toHaveBeenCalledTimes(1);
+  });
 });

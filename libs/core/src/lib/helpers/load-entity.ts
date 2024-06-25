@@ -3,6 +3,9 @@ import { EntityRegistrationOptions } from '../models/registration-options';
 import { entityOptionsRegistry, loadedEntityRegistry } from '../registry';
 import { getEntity } from './get-entity';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const entities = new Map<string, Promise<EntityConstructor<any, any>>>();
+
 export async function loadEntity<T, K>(
   entityName: string,
 ): Promise<EntityConstructor<T, K>> {
@@ -25,11 +28,27 @@ export async function loadEntity<T, K>(
     throw `Mexo entity "${entityName}" is registered but it has no "load" function. Please, provide it`;
   }
 
-  const result = await options.load();
+  const result = await loadEntityInternal(options);
 
   if (result) {
     loadedEntityRegistry.set(entityName, result);
   }
 
   return result;
+}
+
+async function loadEntityInternal<T, K>({
+  name,
+  load,
+}: EntityRegistrationOptions<EntityConstructor<T, K>>): Promise<
+  EntityConstructor<T, K>
+> {
+  if (entities.get(name)) {
+    return entities.get(name) as Promise<EntityConstructor<T, K>>;
+  }
+
+  const entity = load() as Promise<EntityConstructor<T, K>>;
+  entities.set(name, entity);
+
+  return entity;
 }
