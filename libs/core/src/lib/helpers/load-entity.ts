@@ -37,7 +37,7 @@ export async function loadEntity<T, K>(
   return result;
 }
 
-async function loadEntityInternal<T, K>({
+function loadEntityInternal<T, K>({
   name,
   load,
 }: EntityRegistrationOptions<EntityConstructor<T, K>>): Promise<
