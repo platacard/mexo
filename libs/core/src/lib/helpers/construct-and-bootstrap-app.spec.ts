@@ -53,11 +53,19 @@ describe('constructAndBootstrapApp', () => {
 
   describe('An app is NOT loaded', () => {
     it('should load an app', async () => {
+      const load = jest.fn(() => Promise.resolve(ApplicationMock));
+      const options = {
+        name: 'appMock2',
+        load,
+      };
+
+      registerApp(options);
+
       expect.assertions(1);
 
-      await constructAndBootstrapApp('appMock', '#container');
+      await constructAndBootstrapApp('appMock2', '#container');
 
-      expect(loadFn).toHaveBeenCalledTimes(1);
+      expect(load).toHaveBeenCalledTimes(1);
     });
 
     it('should bootstrap an app', async () => {
