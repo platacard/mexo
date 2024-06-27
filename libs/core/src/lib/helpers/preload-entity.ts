@@ -5,9 +5,13 @@ export function preloadEntity(name: string) {
     return;
   }
 
-  const requestIdle = requestIdleCallback || setTimeout;
-
-  requestIdle(() => {
+  const loadEntityFn = () => {
     loadEntity(name);
-  });
+  };
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(loadEntityFn);
+  } else {
+    setTimeout(loadEntityFn);
+  }
 }
